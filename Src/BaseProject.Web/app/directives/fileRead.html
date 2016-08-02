@@ -1,0 +1,25 @@
+﻿<div class="" ng-class="{ 'btn-group' : uploadVm.fileName }">
+    <a ng-href="{{uploadVm.urlView}}"
+       target="_blank"
+       class="btn btn-default"
+       ng-show="uploadVm.showViewButton() && uploadVm.fileName">
+        <span class="glyphicon glyphicon-file"></span>
+    </a>
+    <button type="button"
+            class="btn btn-default"
+            ng-class="{ 'btn-default' : !uploadVm.fileName, 'btn-success' : uploadVm.fileName }"
+            ng-click="uploadVm.onClick($event)"
+            ng-hide="uploadVm.showViewButton() && uploadVm.fileName"
+            ng-disabled="uploadVm.ngDisabled()">
+        <span class="glyphicon glyphicon-cloud-upload"></span>
+    </button>
+    <button type="button"
+            class="btn btn-danger"
+            ng-click="uploadVm.cleanFile($event)"
+            ng-disabled="uploadVm.ngDisabled()"
+            ng-show="uploadVm.fileName">
+        <span class="glyphicon glyphicon-remove" ></span>
+    </button>
+</div>
+
+<input accept="{{uploadVm.accept}}" ng-show="false" type="file" />

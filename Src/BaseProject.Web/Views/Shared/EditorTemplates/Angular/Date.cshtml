@@ -1,0 +1,34 @@
+﻿@using System.Threading
+@model DateTime?
+@{
+    var date = (Model.HasValue)
+        ? Model.Value.ToShortDateString()
+        : string.Empty;
+
+    var format = Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern;
+}
+
+
+<div class="input-group date form-group-date"
+     ng-controller="DatepickerCtrl as dateCtrl"
+     ng-init="dateCtrl.init(@(ViewBag.DatepickerOptions))">
+    @Html.TextBox("", date, new
+{
+    @class = "form-control",
+    data_val_data = "La fecha no es valida",
+    uib_datepicker_popup = format,
+    ng_model = Html.AngularBindingForModel(),
+    ng_change = ViewBag.NgChange,
+    ng_disabled = ViewBag.NgDisabled,
+    ng_required = ViewBag.NgRequired,
+    datepicker_options = "dateCtrl.config.dateOptions",
+    ng_click = "dateCtrl.onOpen($event)",
+    is_open = "dateCtrl.config.isOpen",
+    close_text = "Cerrar",
+    clear_text = "Limpiar",
+    current_text = "Hoy",
+    show_button_bar = "false"
+})
+    <span class="input-group-addon add-on" ng-disabled="@(ViewBag.NgDisabled)"
+          ng-click="dateCtrl.onOpen($event)"><i class="glyphicon glyphicon-calendar"></i></span>
+</div>

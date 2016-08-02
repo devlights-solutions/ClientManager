@@ -1,0 +1,20 @@
+﻿@model UiSelectModel
+
+<ui-select ng-model="@Html.AngularBindingForModel()"
+           @(Model.FromService ? "ng-controller=\"UiSelectCtrl as uiSelectVm\"" : string.Empty)
+           @(Model.FromService ? "ng-init='uiSelectVm.init(" + Model.NgUiSelectInit + ")'" : string.Empty)
+           theme="bootstrap"
+           on-select="@(Model.NgSelect)"
+           ng-disabled="@(Model.NgDisabled)"
+           ng-change="@(Model.NgChange)"
+           search-enabled="@(Model.NgSearchEnabled)">
+    <ui-select-match placeholder="@(Model.Placeholder)" allow-clear="true">
+        {{$select.selected.@(ViewBag.NgSelectPropertyText) || $select.selected}}
+    </ui-select-match>
+    <ui-select-choices repeat='@(Model.NgRepeat)'
+                       refresh="@(Model.NgRefresh)"
+                       refresh-delay="@(Model.NgRefreshDelay)"
+                       group-by="@(Model.NgGroupBy)">
+        <div ng-bind-html="item.@(Model.NgSelectPropertyText) | highlight: $select.search"></div>
+    </ui-select-choices>
+</ui-select>

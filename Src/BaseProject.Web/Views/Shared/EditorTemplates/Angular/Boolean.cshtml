@@ -1,0 +1,8 @@
+﻿@model bool?
+
+@Html.CheckBox("", Model.GetValueOrDefault(false), new
+{
+    ng_model = Html.AngularBindingForModel(),
+    ng_change = ViewBag.NgChange,
+    ng_disabled = ViewBag.NgDisabled
+})

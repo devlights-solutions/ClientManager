@@ -1,0 +1,19 @@
+﻿@model int?
+
+@{
+    ViewBag.Min = String.IsNullOrEmpty(ViewBag.Min) ? int.MinValue : ViewBag.Min;
+    ViewBag.Max = String.IsNullOrEmpty(ViewBag.Max) ? int.MaxValue : ViewBag.Max;
+}
+@Html.TextBox("", Model, new
+{
+    @class = "form-control text-right",
+    ng_model = Html.AngularBindingForModel(),
+    ng_change = ViewBag.NgChange,
+    ng_required = ViewBag.NgRequired,
+    ng_disabled = ViewBag.NgDisabled,
+    decimals = 0,
+    decimal_min = ViewBag.Min,
+    decimal_max = ViewBag.Max,
+    formatting = "false",
+    decimals_only = ""
+})

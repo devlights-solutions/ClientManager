@@ -1,0 +1,29 @@
+﻿@model decimal?
+@{
+
+    ViewBag.Decimals = String.IsNullOrEmpty(ViewBag.Decimals) ? "2" : ViewBag.Decimals;
+    ViewBag.Min = String.IsNullOrEmpty(ViewBag.Min) ? null : ViewBag.Min;
+    ViewBag.Max = String.IsNullOrEmpty(ViewBag.Max) ? null : ViewBag.Max;
+
+    var format = "N" + (string) ViewBag.Decimals;
+    var currency = !Model.HasValue ? string.Empty : Model.GetValueOrDefault().ToString(format);
+}
+
+<div class="input-group input-group-currency">
+    <span class="input-group-addon">$</span>
+    @Html.TextBox("",
+        currency,
+        new
+        {
+            @class = "form-control text-right",
+            ng_model = Html.AngularBindingForModel(),
+            ng_change = ViewBag.NgChange,
+            ng_blur = ViewBag.NgBlur,
+            ng_disabled = ViewBag.NgDisabled,
+            decimals = ViewBag.Decimals,
+            decimal_min = ViewBag.Min,
+            decimal_max = ViewBag.Max,
+            formatting = "false",
+            decimals_only= ""
+        })
+</div>

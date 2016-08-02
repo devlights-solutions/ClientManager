@@ -1,0 +1,27 @@
+﻿@using System.Globalization
+@using Framework.Common.Validation
+@model System.Data.Entity.Spatial.DbGeography
+
+@{
+    var width = this.ViewData["width"] ?? "400px";
+    var height = this.ViewData["height"] ?? "400px";
+    bool hideInput = (bool)(this.ViewData["hide_input"] ?? false);
+    var htmlAttributes = new
+                         {
+                             @class = "editor-for-dbgeography form-control" + (hideInput ? " hide" : string.Empty),
+                             data_val ="true",
+                             data_val_regex = "La Ubicación no es valida",
+                             data_val_regex_pattern = RegexPatterns.Location,
+                             data_map_width = width,
+                             data_map_height = height
+                         };
+}
+
+@if (Model != null && Model.Latitude.HasValue && Model.Longitude.HasValue)
+{
+    @Html.TextBox("", Model.Latitude.Value.ToString(CultureInfo.InvariantCulture) + "," + Model.Longitude.Value.ToString(CultureInfo.InvariantCulture), htmlAttributes)
+}
+else
+{
+    @Html.TextBox("", "", htmlAttributes)
+}

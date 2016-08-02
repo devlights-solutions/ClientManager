@@ -1,0 +1,21 @@
+﻿<div class="modal-header">
+    <button aria-label="Close" class="close" ng-click="staticModalVm.close()" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title" ng-bind="staticModalVm.options.headerText"></h4>
+</div>
+<div class="modal-body">
+    <p ng-bind="staticModalVm.options.bodyText"></p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default"
+            ng-click="staticModalVm.close()"
+            ng-bind="staticModalVm.options.closeButtonText"
+            type="button">
+    </button>
+    <button class="btn btn-primary" 
+            ng-click="staticModalVm.ok()"
+            ng-bind="staticModalVm.options.actionButtonText"
+            type="button">
+    </button>
+</div>

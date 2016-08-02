@@ -1,0 +1,13 @@
+﻿@using System.Threading
+@model DateTime?
+@{
+    var date = (Model.HasValue)
+                    ? Model.Value.ToShortDateString()
+                    : string.Empty;
+
+    var format = Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLowerInvariant();                
+}
+<div class="input-group date bootstrap-datepicker form-group-date" data-date="@(date)" data-date-format="@(format)">
+    @Html.TextBox("", date, new { @class = "form-control" , data_val_data = "La fecha no es valida" })
+    <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+</div>

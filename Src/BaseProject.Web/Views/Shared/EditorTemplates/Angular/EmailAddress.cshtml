@@ -1,0 +1,11 @@
+﻿@model string
+@Html.TextBox("", Model,
+        new
+        {
+            @class = "form-control",
+            placeholder = ViewData.ModelMetadata.Watermark,
+            ng_model = Html.AngularBindingForModel(),
+            ng_change = ViewBag.NgChange,
+            ng_disabled = ViewBag.NgDisabled,
+            type = "email"
+        })
