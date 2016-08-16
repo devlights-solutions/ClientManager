@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using ClientManager.Service.Dtos;
 using ClientManager.Service.Interfaces;
-using ClientManager.Web.Models.Demo;
+using ClientManager.Web.Models;
 using Framework.Common.Mapping;
 using PagedList;
+using ClientManager.Web.Models;
 
 namespace ClientManager.Web.Controllers.Api
 {
@@ -88,7 +89,7 @@ namespace ClientManager.Web.Controllers.Api
         }
 
         // DELETE: api/Demo
-        public async Task<IHttpActionResult> Delete(Guid id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
             var demo = _demoService.GetById(id);
             if (demo == null)

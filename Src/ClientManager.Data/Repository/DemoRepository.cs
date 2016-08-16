@@ -23,7 +23,7 @@ namespace ClientManager.Data.Repository
     //        var paramOutPageTotal = new ObjectParameter("TotalRecords", typeof(int));
     //        var result = new PagedResultList<DemoComplete>();
 
-    //        result.Entities = ((BaseProjectDbContext)DbContext).GetDemos(criteria,
+    //        result.Entities = ((ClientManagerDbContext)DbContext).GetDemos(criteria,
     //                                            paging.SortBy + " " + paging.SortDirection,
     //                                            paging.PageNumber,
     //                                            paging.PageSize,

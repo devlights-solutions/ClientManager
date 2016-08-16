@@ -14,7 +14,7 @@ namespace ClientManager.Web
             var typesReference = Assembly
                            .GetExecutingAssembly()
                            .GetReferencedAssemblies()
-                           .Where(x => x.Name.StartsWith("BaseProject"))
+                           .Where(x => x.Name.StartsWith("ClientManager"))
                            .Select(x => Assembly.Load(x))
                            .SelectMany(x => x.GetTypes()).ToArray();
 

@@ -40,18 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseProjectModel.cs">
+    <Compile Include="Client.cs">
+      <DependentUpon>ClientManagerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientManagerModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseProjectModel.tt</DependentUpon>
+      <DependentUpon>ClientManagerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Client.cs" />
     <Compile Include="Extensions\Demo.cs" />
+    <Compile Include="Extensions\Project.cs" />
+    <Compile Include="Project.cs">
+      <DependentUpon>ClientManagerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BaseProjectModel.tt">
+    <Content Include="ClientManagerModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BaseProjectModel.cs</LastGenOutput>
+      <LastGenOutput>ClientManagerModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

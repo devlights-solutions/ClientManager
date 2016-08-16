@@ -54,6 +54,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\Framework\Framework.Report\bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Reflection.1.0.0.0\lib\Mono.Reflection.dll</HintPath>
       <Private>True</Private>
@@ -71,11 +74,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="ClientService.cs" />
+    <Compile Include="Dtos\ProjectDto.cs" />
+    <Compile Include="Dtos\ClientDto.cs" />
     <Compile Include="Dtos\DemoDto.cs" />
     <Compile Include="DemoService.cs" />
     <Compile Include="Interfaces\IAppSettings.cs" />
+    <Compile Include="Interfaces\IClientService.cs" />
     <Compile Include="Interfaces\IDemoService.cs" />
+    <Compile Include="Interfaces\IProjectService.cs" />
     <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="ProjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBase.cs" />
   </ItemGroup>

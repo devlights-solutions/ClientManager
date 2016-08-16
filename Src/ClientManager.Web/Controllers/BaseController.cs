@@ -5,7 +5,7 @@ using Framework.Common.Web.ActionResults;
 
 namespace ClientManager.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public abstract class BaseController : Controller
     {
         public const int DefaultPageSize = 50;

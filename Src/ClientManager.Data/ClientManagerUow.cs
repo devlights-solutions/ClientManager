@@ -13,9 +13,9 @@ using ClientManager.Entities;
 
 namespace ClientManager.Data
 {
-    public class BaseProjectUow : IBaseProjectUow
+    public class ClientManagerUow : IClientManagerUow
     {
-        public BaseProjectUow(IRepositoryProvider repositoryProvider)
+        public ClientManagerUow(IRepositoryProvider repositoryProvider)
         {
             CreateDbContext();
 
@@ -25,6 +25,11 @@ namespace ClientManager.Data
 
         public IRepository<Demo> Demos { get { return GetStandardRepo<Demo>(); } }
 
+        public IRepository<Client> Clients { get { return GetStandardRepo<Client>(); } }
+
+        public IRepository<Project> Projects { get { return GetStandardRepo<Project>(); } }
+
+
         //public IDemoRepository Demos { get { return GetRepo<IDemoRepository>(); } }
 
         public string ConnectionString
@@ -32,9 +37,9 @@ namespace ClientManager.Data
             get
             {
                 var builder = new EntityConnectionStringBuilder();
-                builder.Metadata = @"res://*/BaseProjectModel.csdl|res://*/BaseProjectModel.ssdl|res://*/BaseProjectModel.msl";
+                builder.Metadata = @"res://*/ClientManagerModel.csdl|res://*/ClientManagerModel.ssdl|res://*/ClientManagerModel.msl";
                 builder.Provider = "System.Data.SqlClient";
-                builder.ProviderConnectionString = ConfigurationManager.ConnectionStrings["BaseProjectDbContext"].ConnectionString;
+                builder.ProviderConnectionString = ConfigurationManager.ConnectionStrings["ClientManagerDbContext"].ConnectionString;
                 return builder.ToString();
             }
         }
@@ -54,7 +59,7 @@ namespace ClientManager.Data
 
         protected void CreateDbContext()
         {
-            DbContext = new BaseProjectDbContext(ConnectionString);
+            DbContext = new ClientManagerDbContext(ConnectionString);
 
             // Do NOT enable proxied entities, else serialization fails
             DbContext.Configuration.ProxyCreationEnabled = false;
@@ -83,7 +88,7 @@ namespace ClientManager.Data
             return RepositoryProvider.GetRepository<T>();
         }
 
-        public BaseProjectDbContext DbContext { get; set; }
+        public ClientManagerDbContext DbContext { get; set; }
 
         #region IDisposable
 

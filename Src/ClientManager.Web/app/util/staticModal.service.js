@@ -16,7 +16,7 @@
             modalFade: true,
             controller:  ['$uibModalInstance', 'options', controller],
             controllerAs: 'staticModalVm',
-            templateUrl: '/Scripts/app/util/staticModal.html'
+            templateUrl: '/app/util/staticModal.html'
         };
 
         var options = {

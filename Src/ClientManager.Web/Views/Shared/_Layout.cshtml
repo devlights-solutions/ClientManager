@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body ng-app="app">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,8 +18,7 @@
                 </button>
                 <a class="navbar-brand" href="/" style="padding: 0;">
                     <img src="/Content/Images/logo.png" alt="" style="height: 40px; margin-top: 5px;" />
-                </a>
-                
+                </a>                
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_Menu")

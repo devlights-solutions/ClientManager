@@ -13,8 +13,8 @@ namespace ClientManager.Web
 	{
 		public static void Config()
 		{
-            ClientDataTypeModelValidatorProvider.ResourceClassKey = "BaseProjectGlobalResources";
-            DefaultModelBinder.ResourceClassKey = "BaseProjectGlobalResources";
+            ClientDataTypeModelValidatorProvider.ResourceClassKey = "ClientManagerGlobalResources";
+            DefaultModelBinder.ResourceClassKey = "ClientManagerGlobalResources";
             
             DataAnnotationsModelValidatorProvider.RegisterAdapter(
                 typeof(RequiredAttribute),
@@ -35,7 +35,7 @@ namespace ClientManager.Web
                                           RequiredAttribute attribute)
             : base(metadata, context, attribute)
         {
-            attribute.ErrorMessageResourceType = typeof(BaseProjectGlobalResources);
+            attribute.ErrorMessageResourceType = typeof(ClientManagerGlobalResources);
             attribute.ErrorMessageResourceName = "Required";
         }
     }
@@ -47,7 +47,7 @@ namespace ClientManager.Web
                                           RangeAttribute attribute)
             : base(metadata, context, attribute)
         {
-            attribute.ErrorMessageResourceType = typeof(BaseProjectGlobalResources);
+            attribute.ErrorMessageResourceType = typeof(ClientManagerGlobalResources);
             attribute.ErrorMessageResourceName = "Range";
         }
     }
@@ -78,7 +78,7 @@ namespace ClientManager.Web
   
          private static void GetLocalizedDisplayName(ModelMetadata meta, string propertyName)
          {
-             ResourceManager resourceManager = BaseProjectGlobalResources.ResourceManager;
+             ResourceManager resourceManager = ClientManagerGlobalResources.ResourceManager;
              CultureInfo culture = Thread.CurrentThread.CurrentUICulture;
              meta.DisplayName = resourceManager.GetString(propertyName, culture);
          }

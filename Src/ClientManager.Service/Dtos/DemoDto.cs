@@ -11,7 +11,7 @@ namespace ClientManager.Service.Dtos
 {
     public class DemoDto : IMapFrom<Demo>, IHaveCustomMappings
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public Demo ToDemo()
         {

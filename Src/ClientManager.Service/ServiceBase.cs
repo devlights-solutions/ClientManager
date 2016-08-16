@@ -11,7 +11,7 @@ namespace ClientManager.Service
         public const string DefaultSortDirection = "DESC";
         public const int DefaultPageSize = 50;
 
-        protected IBaseProjectUow Uow { get; set; }
+        protected IClientManagerUow Uow { get; set; }
 
         protected IUowFactory UowFactory { get; set; }
 

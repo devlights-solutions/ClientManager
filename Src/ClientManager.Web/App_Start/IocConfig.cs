@@ -30,10 +30,10 @@ namespace ClientManager.Web
         /// <param name="kernel"></param>
         private static void RegisterBindings(IKernel kernel)
         {
-            kernel.Bind<RepositoryFactories>().To<BaseProjectRepositoryFactories>().InSingletonScope();
+            kernel.Bind<RepositoryFactories>().To<ClientManagerRepositoryFactories>().InSingletonScope();
             kernel.Bind<IClock>().To<Clock>().InSingletonScope();
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
-            kernel.Bind<IBaseProjectUow>().To<BaseProjectUow>().InRequestScope();
+            kernel.Bind<IClientManagerUow>().To<ClientManagerUow>().InRequestScope();
 
             kernel.Bind<ApplicationRoleManager>().ToMethod(c => HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>());
             kernel.Bind<ApplicationUserManager>().ToMethod(c => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());

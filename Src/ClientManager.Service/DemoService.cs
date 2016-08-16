@@ -12,6 +12,7 @@ using ClientManager.Entities;
 using ClientManager.Service.Dtos;
 using ClientManager.Service.Interfaces;
 using Framework.Common.Mapping;
+using ClientManager.Data;
 
 namespace ClientManager.Service
 {
@@ -19,7 +20,7 @@ namespace ClientManager.Service
     {
         private readonly IClock _clock;
 
-        public DemoService(IBaseProjectUow uow, IClock clock)
+        public DemoService(ClientManagerUow uow, IClock clock)
         {
             _clock = clock;
             Uow = uow;
@@ -41,7 +42,7 @@ namespace ClientManager.Service
             return Uow.CommitAsync();
         }
 
-        public Task Delete(Guid demoId)
+        public Task Delete(int demoId)
         {
             var demo = GetById(demoId);
             demo.IsDeleted = true;
@@ -50,7 +51,7 @@ namespace ClientManager.Service
             return Uow.CommitAsync();
         }
 
-        public Demo GetById(Guid id)
+        public Demo GetById(int id)
         {
             return Uow.Demos.Get(id);
         }

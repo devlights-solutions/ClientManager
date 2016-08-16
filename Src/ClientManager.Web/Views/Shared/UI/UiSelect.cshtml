@@ -1,8 +1,8 @@
 ﻿@model UiSelectModel
 
 <ui-select ng-model="@Html.AngularBindingForModel()"
-           @(Model.FromService ? "ng-controller=\"UiSelectCtrl as uiSelectVm\"" : string.Empty)
-           @(Model.FromService ? "ng-init='uiSelectVm.init(" + Model.NgUiSelectInit + ")'" : string.Empty)
+           @Html.Raw(Model.FromService ? "ng-controller='UiSelectCtrl as uiSelectVm'" : string.Empty)
+           @Html.Raw(Model.FromService ? "ng-init='uiSelectVm.init(" + Model.NgUiSelectInit + ")'" : string.Empty)
            theme="bootstrap"
            on-select="@(Model.NgSelect)"
            ng-disabled="@(Model.NgDisabled)"

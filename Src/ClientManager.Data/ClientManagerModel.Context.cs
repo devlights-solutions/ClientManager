@@ -15,10 +15,10 @@ namespace ClientManager.Data
     using ClientManager.Entities;
     
     
-    public partial class BaseProjectDbContext : DbContext
+    public partial class ClientManagerDbContext : DbContext
     {
-        public BaseProjectDbContext()
-            : base("name=BaseProjectDbContext")
+        public ClientManagerDbContext()
+            : base("name=ClientManagerDbContext")
         {
         }
     
@@ -27,5 +27,7 @@ namespace ClientManager.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
     }
 }

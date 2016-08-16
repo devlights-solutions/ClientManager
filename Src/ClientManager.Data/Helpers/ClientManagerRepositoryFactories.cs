@@ -7,7 +7,7 @@ using ClientManager.Data.Repository;
 
 namespace ClientManager.Data.Helpers
 {
-    public class BaseProjectRepositoryFactories : RepositoryFactories
+    public class ClientManagerRepositoryFactories : RepositoryFactories
     {
         protected override IDictionary<Type, Func<DbContext, object>> GetFactories()
         {

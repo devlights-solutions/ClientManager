@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ClientManager.Service.Interfaces;
-using ClientManager.Web.Models.Demo;
+using ClientManager.Web.Models;
 
 namespace ClientManager.Web.Controllers
 {
-    [Authorize(Roles = "Banco")]
+    
     public class DemoController : BaseController
     {
         private readonly IDemoService _demoService;
@@ -23,7 +20,7 @@ namespace ClientManager.Web.Controllers
             return View(filters);
         }
 
-        public ActionResult Detail(Guid id)
+        public ActionResult Detail(int id)
         {
             var demo = _demoService.GetById(id);
             var demoForm = DemoForm.FromDemo(demo);
@@ -37,7 +34,7 @@ namespace ClientManager.Web.Controllers
         }
 
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(int id)
         {
             var demo = _demoService.GetById(id);
             var demoForm = DemoForm.FromDemo(demo);

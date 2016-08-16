@@ -2,7 +2,7 @@
 using System.Web.Routing;
 using ClientManager.Web.Models.List;
 
-namespace ClientManager.Web.Models.Demo
+namespace ClientManager.Web.Models
 {
     public class DemoListFiltersModel : FilterBaseModel
     {

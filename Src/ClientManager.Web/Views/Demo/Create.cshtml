@@ -1,10 +1,10 @@
-﻿@model BankForm
+﻿@model DemoForm
 @{
 }
 <form role="form" form-parse id="BankForm" name="vm.form" ng-submit="vm.create($event)" novalidate autocomplete="off">
     <div class="modal-header">
         <button type="button" class="close" ng-click="vm.cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Crear @ObrasGlobalResources.Bank</h4>
+        <h4 class="modal-title">Crear @ClientManagerGlobalResources.Client</h4>
     </div>
     <div class="modal-body" ng-init='vm.init(@Html.Json(Model))'>
         @Html.AntiForgeryToken()

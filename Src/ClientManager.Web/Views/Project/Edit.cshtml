@@ -1,0 +1,18 @@
+﻿@model ProjectForm
+@{
+}
+<form role="form" form-parse id="ProjectForm" name="vm.form" ng-submit="vm.edit('#ProjectForm')" novalidate autocomplete="off">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="vm.cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Crear @ClientManagerGlobalResources.Project</h4>
+    </div>
+    <div class="modal-body" ng-init='vm.init(@Html.Json(Model))'>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.AngularEditorForModel("vm.project")
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </div>
+</form>

@@ -6,11 +6,13 @@ using PointEx.Data;
 
 namespace ClientManager.Data.Interfaces
 {
-    public interface IBaseProjectUow : IUow
+    public interface IClientManagerUow : IUow
     {
         IRepository<Demo> Demos { get; }
         //IDemoRepository Demos { get; }
+        IRepository<Client> Clients { get; }
+        IRepository<Project> Projects { get; }
 
-        BaseProjectDbContext DbContext { get; }
+        ClientManagerDbContext DbContext { get; }
     }
 }

@@ -9,7 +9,7 @@ namespace ClientManager.Entities
 {
     public partial class Demo : IEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
     }

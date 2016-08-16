@@ -3,12 +3,12 @@ using System.Web.Mvc;
 using AutoMapper;
 using Framework.Common.Mapping;
 
-namespace ClientManager.Web.Models.Demo
+namespace ClientManager.Web.Models
 {
     public class DemoForm : IMapFrom<Entities.Demo>
     {
         [HiddenInput]
-        public Guid? Id { get; set; }
+        public int? Id { get; set; }
 
         public Entities.Demo ToDemo()
         {

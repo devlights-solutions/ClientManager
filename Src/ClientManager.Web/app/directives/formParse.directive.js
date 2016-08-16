@@ -19,7 +19,7 @@
             $form.removeData("validator");
             $form.removeData("unobtrusiveValidation");
             $.validator.unobtrusive.parse($form);
-            controls.parse($form);
+            //controls.parse($form);
 
         }
         function link(scope, element, attrs, modelCtrl) {

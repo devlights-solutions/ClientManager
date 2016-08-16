@@ -8,7 +8,7 @@ namespace Framework.Data.Interfaces
 {
     public interface IEntity
     {
-        Guid Id { get; set; }
+        int Id { get; set; }
         bool IsDeleted { get; set; }
         DateTime CreatedDate { get; set; }
     }

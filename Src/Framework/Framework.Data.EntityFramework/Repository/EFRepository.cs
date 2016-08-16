@@ -99,7 +99,7 @@ namespace Framework.Data.EntityFramework.Repository
             return result;
         }
 
-        public virtual T Get(Guid id, params Expression<Func<T, object>>[] includes)
+        public virtual T Get(int id, params Expression<Func<T, object>>[] includes)
         {
             var dbset = DbSet.Where(x => !x.IsDeleted).AsQueryable();
             foreach (var include in includes)
@@ -124,8 +124,7 @@ namespace Framework.Data.EntityFramework.Repository
             DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
             entity.CreatedDate = DateTime.Now;
             entity.IsDeleted = false;
-            entity.Id = Guid.NewGuid();
-
+            
             if (dbEntityEntry.State != EntityState.Detached)
             {
                 dbEntityEntry.State = EntityState.Added;
@@ -153,7 +152,7 @@ namespace Framework.Data.EntityFramework.Repository
             Edit(entity);
         }
 
-        public virtual void Delete(Guid id)
+        public virtual void Delete(int id)
         {
             var entity = Get(id);
             if (entity == null) return; // not found; assume already deleted.
