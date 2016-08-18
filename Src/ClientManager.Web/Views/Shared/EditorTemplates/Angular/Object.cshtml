@@ -5,16 +5,29 @@
     if (prop.TemplateHint != "HiddenInput")
     {
         <div class="form-group">
+
             @Html.BootstrapLabelBlock(prop.PropertyName)
-            @Html.Editor(prop.PropertyName,
+
+            @if (prop.IsReadOnly)
+            {
+                @Html.Display(prop.PropertyName,
                 AngularTemplateHelper.GetTemplateForProperty(prop),
-                new {Prefix = ViewBag.Prefix})
-            @Html.ValidationMessage(prop.PropertyName, new {@class = "text-danger"})
+                new { Prefix = ViewBag.Prefix })
+            }
+            else
+            {
+                @Html.Editor(prop.PropertyName,
+                AngularTemplateHelper.GetTemplateForProperty(prop),
+                new { Prefix = ViewBag.Prefix })
+                @Html.ValidationMessage(prop.PropertyName, new { @class = "text-danger" })
+            }
+
+
         </div>
     }
     else
     {
-        @Html.Hidden(prop.PropertyName, prop.Model, new { ng_model = Html.AngularBindingForModel(prop.PropertyName)})
+        @Html.Hidden(prop.PropertyName, prop.Model, new { ng_model = Html.AngularBindingForModel(prop.PropertyName) })
     }
 
 }

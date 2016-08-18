@@ -29,5 +29,6 @@ namespace ClientManager.Data
     
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
     }
 }

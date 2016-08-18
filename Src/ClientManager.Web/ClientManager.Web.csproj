@@ -227,9 +227,11 @@
     <Compile Include="Controllers.Api\BaseApiController.cs" />
     <Compile Include="Controllers.Api\ClientController.cs" />
     <Compile Include="Controllers.Api\DemoController.cs" />
+    <Compile Include="Controllers.Api\PaymentController .cs" />
     <Compile Include="Controllers.Api\ProjectController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
@@ -249,6 +251,8 @@
     <Compile Include="Models\List\FilterBaseModel.cs" />
     <Compile Include="Models\List\IFilter.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Payment\PaymentForm.cs" />
+    <Compile Include="Models\Payment\PaymentListFiltersModel.cs" />
     <Compile Include="Models\Project\ProjectListFiltersModel.cs" />
     <Compile Include="Models\Project\ProjectForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -270,9 +274,13 @@
     <Content Include="app\directives\hiddenValue.directive.js" />
     <Content Include="app\directives\numbers.directive.js" />
     <Content Include="app\directives\tableNavigation.directive.js" />
+    <Content Include="app\payment\payment.controller.js" />
+    <Content Include="app\payment\payment.module.js" />
+    <Content Include="app\payment\paymentModal.controller.js" />
     <Content Include="app\project\project.controller.js" />
     <Content Include="app\project\project.module.js" />
     <Content Include="app\project\projectModal.controller.js" />
+    <Content Include="app\services\payment.service.js" />
     <Content Include="app\services\project.service.js" />
     <Content Include="app\services\client.service.js" />
     <Content Include="app\services\demo.service.js" />
@@ -461,6 +469,12 @@
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Angular\ClientId.cshtml" />
+    <Content Include="Views\Payment\_Filters.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Detail.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Angular\ProjectId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\filters\" />

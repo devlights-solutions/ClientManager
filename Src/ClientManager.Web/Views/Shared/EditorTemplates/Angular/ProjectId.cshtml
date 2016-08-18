@@ -1,0 +1,18 @@
+﻿@using ClientManager.Service.Interfaces
+@{
+    ViewData[UiSelectModel.KeyNgSelectPropertyText] = ViewData[UiSelectModel.KeyNgSelectPropertyText] ?? "nombre";
+    ViewData[UiSelectModel.KeyNgSelectPropertyValue] = ViewData[UiSelectModel.KeyNgSelectPropertyValue] ?? "id";
+    ViewData[UiSelectModel.KeyNgSelectFilter] = ViewData[UiSelectModel.KeyNgSelectFilter] ?? "{ nombre: $select.search }";
+    ViewData[UiSelectModel.KeyNgSelectOrderBy] = ViewData[UiSelectModel.KeyNgSelectOrderBy] ?? "'nombre'";
+    ViewData[UiSelectModel.KeyNgSearchEnabled] = ViewData[UiSelectModel.KeyNgSearchEnabled] ?? "false";
+    if (ViewData[UiSelectModel.KeyNgSelectList] == null)
+    {
+        var service = IocContainer.GetContainer().Get<IProjectService>();
+        var selectList = service.GetAll();
+        ViewData[UiSelectModel.KeyFromService] = true;
+        ViewData[UiSelectModel.KeyNgSelectList] = Html.Json(selectList).ToHtmlString();
+    }
+    var model = new UiSelectModel(ViewData);
+}
+
+@Html.Partial("UI/UiSelect", model)

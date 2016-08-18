@@ -9,7 +9,7 @@
            ng-change="@(Model.NgChange)"
            search-enabled="@(Model.NgSearchEnabled)">
     <ui-select-match placeholder="@(Model.Placeholder)" allow-clear="true">
-        {{$select.selected.@(ViewBag.NgSelectPropertyText) || $select.selected}}
+        <span ng-bind-html="$select.selected.@(ViewBag.NgSelectPropertyText) || $select.selected"></span>
     </ui-select-match>
     <ui-select-choices repeat='@(Model.NgRepeat)'
                        refresh="@(Model.NgRefresh)"

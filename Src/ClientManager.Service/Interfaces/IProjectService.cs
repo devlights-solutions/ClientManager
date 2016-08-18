@@ -10,9 +10,9 @@ namespace ClientManager.Service.Interfaces
 {
     public interface IProjectService : IService
     {
-        Task Create(Project client);
-        Task Edit(Project client);
-        Task Delete(int clientId);
+        Task Create(Project project);
+        Task Edit(Project project);
+        Task Delete(int projectId);
         IList<ProjectDto> GetAll();
 
         List<ProjectDto> GetAll(string criteria, string sortBy, string sortDirection, int pageIndex, int pageSize,

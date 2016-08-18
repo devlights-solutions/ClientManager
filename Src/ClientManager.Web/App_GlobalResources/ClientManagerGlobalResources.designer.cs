@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Payments.
+        /// </summary>
+        internal static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Projects.
         /// </summary>
         internal static string Project {

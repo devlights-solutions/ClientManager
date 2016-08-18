@@ -20,6 +20,20 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Secuencia" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="Pagado" Type="bit" Nullable="false" />
+          <Property Name="FechaPago" Type="datetime2" Precision="7" />
+          <Property Name="Monto" Type="money" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="datetime2" Precision="7" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
@@ -28,10 +42,23 @@
           <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="FechaInicio" Type="date" />
+          <Property Name="CostoTotal" Type="money" />
           <Property Name="ClientId" Type="int" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Payment_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
@@ -46,7 +73,12 @@
         </Association>
         <EntityContainer Name="ClientManagerModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Payment_Project" Association="Self.FK_Payment_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Project_Client" Association="Self.FK_Project_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Project" EntitySet="Project" />
@@ -62,6 +94,11 @@
           <AssociationSet Name="FK_Project_Client" Association="ClientManagerModel.FK_Project_Client">
             <End Role="Client" EntitySet="Clients" />
             <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <EntitySet Name="Payments" EntityType="ClientManagerModel.Payment" />
+          <AssociationSet Name="FK_Payment_Project" Association="ClientManagerModel.FK_Payment_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Client">
@@ -92,6 +129,8 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="Client" Relationship="ClientManagerModel.FK_Project_Client" FromRole="Project" ToRole="Client" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Payments" Relationship="ClientManagerModel.FK_Payment_Project" FromRole="Project" ToRole="Payment" />
         </EntityType>
         <Association Name="FK_Project_Client">
           <End Type="ClientManagerModel.Client" Role="Client" Multiplicity="1" />
@@ -102,6 +141,33 @@
             </Principal>
             <Dependent Role="Project">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Secuencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Pagado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaPago" Type="DateTime" Precision="7" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="7" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="ClientManagerModel.FK_Payment_Project" FromRole="Payment" ToRole="Project" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Payment_Project">
+          <End Type="ClientManagerModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ClientManagerModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -130,12 +196,28 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="ClientManagerModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="ClientManagerModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

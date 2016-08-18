@@ -126,6 +126,9 @@
   <data name="Demos" xml:space="preserve">
     <value>Demos</value>
   </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Payments</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Projects</value>
   </data>

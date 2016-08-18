@@ -29,6 +29,7 @@ namespace ClientManager.Data
 
         public IRepository<Project> Projects { get { return GetStandardRepo<Project>(); } }
 
+        public IRepository<Payment> Payments { get { return GetStandardRepo<Payment>();  } }
 
         //public IDemoRepository Demos { get { return GetRepo<IDemoRepository>(); } }
 

@@ -27,10 +27,10 @@
         </thead>
         <tbody>
             <tr ng-show="vm.isLoading">
-                <td colspan="8" class="text-center">Buscando projectes ... </td>
+                <td colspan="8" class="text-center">Buscando proyectos ... </td>
             </tr>
             <tr ng-show="vm.projects && vm.projects.length == 0" ng-cloak>
-                <td colspan="8" class="text-center">No se encontraron projectes </td>
+                <td colspan="8" class="text-center">No se encontraron proyectos </td>
             </tr>
             <tr ng-show="!vm.isLoading" ng-repeat="project in vm.projects" ng-cloak>
                 <td ng-bind="project.nombre"></td>

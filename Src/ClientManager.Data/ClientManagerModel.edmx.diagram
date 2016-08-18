@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="ClientManagerModel.Client" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ClientManagerModel.Project" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="ClientManagerModel.FK_Project_Client" />
+        <EntityTypeShape EntityType="ClientManagerModel.Payment" Width="1.5" PointX="5.25" PointY="1.25" />
+        <AssociationConnector Association="ClientManagerModel.FK_Payment_Project" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

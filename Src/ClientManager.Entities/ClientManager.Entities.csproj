@@ -50,7 +50,11 @@
     </Compile>
     <Compile Include="Extensions\Client.cs" />
     <Compile Include="Extensions\Demo.cs" />
+    <Compile Include="Extensions\Payment.cs" />
     <Compile Include="Extensions\Project.cs" />
+    <Compile Include="Payment.cs">
+      <DependentUpon>ClientManagerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs">
       <DependentUpon>ClientManagerModel.tt</DependentUpon>
     </Compile>

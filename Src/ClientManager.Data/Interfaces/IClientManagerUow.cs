@@ -12,6 +12,7 @@ namespace ClientManager.Data.Interfaces
         //IDemoRepository Demos { get; }
         IRepository<Client> Clients { get; }
         IRepository<Project> Projects { get; }
+        IRepository<Payment> Payments { get; }
 
         ClientManagerDbContext DbContext { get; }
     }
