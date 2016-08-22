@@ -5,7 +5,7 @@ using Framework.Common.Mapping;
 using System.ComponentModel.DataAnnotations;
 using Framework.Common.Validation;
 
-namespace ClientManager.Web.Models
+namespace ClientManager.Service.Models
 {
     public class ProjectForm : IMapFrom<Entities.Project>
     {

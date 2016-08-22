@@ -13,24 +13,48 @@ using ClientManager.Service.Dtos;
 using ClientManager.Service.Interfaces;
 using Framework.Common.Mapping;
 using ClientManager.Data;
+using ClientManager.Service.Models;
 
 namespace ClientManager.Service
 {
     public class ProjectService : ServiceBase, IProjectService
     {
         private readonly IClock _clock;
+        private readonly IPaymentService _paymentService;
 
-        public ProjectService(IClientManagerUow uow, IClock clock)
+        public ProjectService(IClientManagerUow uow, IClock clock,IPaymentService paymentService)
         {
+            _paymentService = paymentService;
             _clock = clock;
             Uow = uow;
         }
 
-        public Task Create(Project project)
+        public async Task<Project> Create(ProjectForm projectForm)
         {
+            var project = projectForm.ToProject();
             project.CreatedDate = _clock.Now;
             Uow.Projects.Add(project);
-            return Uow.CommitAsync();
+                        
+            if (projectForm.Cuotas)
+            {
+                var costoCuota = project.CostoTotal.GetValueOrDefault() / projectForm.CantidadCuotas.GetValueOrDefault();
+                for (int i = 0; i < projectForm.CantidadCuotas; i++)
+                {
+                    var pago = new Payment();
+                    pago.Secuencia = i;
+                    pago.Monto = costoCuota;
+                    pago.Pagado = false;
+                    pago.FechaPago = projectForm.FechaPago.GetValueOrDefault().AddMonths(i);
+                    pago.FechaVencimiento = projectForm.FechaPago.GetValueOrDefault().AddMonths(i + 1);
+                    pago.ProjectId = project.Id;
+                    Uow.Payments.Add(pago);
+
+                }
+            }
+
+            await Uow.CommitAsync();
+
+            return project;
         }
 
         public Task Edit(Project project)
@@ -39,6 +63,7 @@ namespace ClientManager.Service
             currentProject.Nombre = project.Nombre;
             currentProject.Descripcion = project.Descripcion;
             currentProject.FechaInicio = project.FechaInicio;
+            currentProject.CostoTotal = project.CostoTotal;
             currentProject.ClientId = project.ClientId;
             Uow.Projects.Edit(currentProject);
             return Uow.CommitAsync();
@@ -47,15 +72,19 @@ namespace ClientManager.Service
         public Task Delete(int projectId)
         {
             var project = GetById(projectId);
-            project.IsDeleted = true;
-            Uow.Projects.Edit(project);
 
+            foreach (var payment in project.Payments)
+            {
+                Uow.Payments.Delete(payment.Id);
+            }            
+            Uow.Projects.Delete(project);
             return Uow.CommitAsync();
         }
 
         public Project GetById(int id)
         {
-            return Uow.Projects.Get(id);
+
+            return Uow.Projects.Get(id, x => x.Payments);
         }
 
         public IList<ProjectDto> GetAll()

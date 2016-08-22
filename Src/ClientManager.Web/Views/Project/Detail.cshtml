@@ -1,4 +1,4 @@
-﻿@model ProjectForm
+﻿@model ClientManager.Service.Models.ProjectForm
 @{
     ViewBag.Title = ClientManagerGlobalResources.Project;
 }
@@ -14,4 +14,6 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.cancel()">Cancelar</button>
+    
+    <a href="@Url.Action("Index", "Payment", new { projectId = Model.Id})" class="btn btn-info" role="button">Pagos del proyecto</a>
 </div>

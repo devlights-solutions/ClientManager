@@ -57,9 +57,8 @@ namespace ClientManager.Service
 
         public Task Delete(int paymentId)
         {
-            var payment = GetById(paymentId);
-            payment.IsDeleted = true;
-            Uow.Payments.Edit(payment);
+            
+            Uow.Payments.Delete(paymentId);
 
             return Uow.CommitAsync();
         }

@@ -10,7 +10,7 @@ namespace ClientManager.Web.Models
     public class PaymentForm : IMapFrom<Entities.Payment>
     {
         [HiddenInput]
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [ReadOnly(true)]
         [Required]
         public int Secuencia { get; set; }
@@ -25,8 +25,6 @@ namespace ClientManager.Web.Models
         [Display(Name = "Fecha Vencimiento")]
         public DateTime? FechaVencimiento { get; set; }        
         [Required]
-        //[UIHint("ProjectId")]
-        //[Display(Name = "Project")]
         [HiddenInput]
         public int? ProjectId { get; set; }
             

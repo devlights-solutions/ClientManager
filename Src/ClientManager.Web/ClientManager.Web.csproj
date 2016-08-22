@@ -254,7 +254,6 @@
     <Compile Include="Models\Payment\PaymentForm.cs" />
     <Compile Include="Models\Payment\PaymentListFiltersModel.cs" />
     <Compile Include="Models\Project\ProjectListFiltersModel.cs" />
-    <Compile Include="Models\Project\ProjectForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -297,6 +296,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\select.css" />
     <Content Include="Content\select.min.css" />

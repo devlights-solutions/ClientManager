@@ -5,6 +5,8 @@ using ClientManager.Service.Dtos;
 using ClientManager.Service.Interfaces;
 using ClientManager.Web.Models;
 using PagedList;
+using ClientManager.Entities;
+using ClientManager.Service.Models;
 
 namespace ClientManager.Web.Controllers.Api
 {
@@ -12,10 +14,12 @@ namespace ClientManager.Web.Controllers.Api
     public class ProjectController : BaseApiController
     {
         private IProjectService _ProjectService;
+        private IPaymentService _PaymentService;
 
-        public ProjectController(IProjectService projectService)
+        public ProjectController(IProjectService projectService, IPaymentService paymentService)
         {
             _ProjectService = projectService;
+            _PaymentService = paymentService;
         }
 
         //[Authorize]
@@ -46,9 +50,9 @@ namespace ClientManager.Web.Controllers.Api
 
             try
             {
-                var project = projectForm.ToProject();
+                
 
-                await _ProjectService.Create(project);
+               var project = await _ProjectService.Create(projectForm);
 
                 return Created(Request.RequestUri + project.Id.ToString(), ProjectDto.FromProject(project));
             }

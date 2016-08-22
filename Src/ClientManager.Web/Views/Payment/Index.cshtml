@@ -4,7 +4,7 @@
     ViewBag.Title = ClientManagerGlobalResources.Payment;
 }
 
-<div data-ng-controller="PaymentCtrl as vm">
+<div data-ng-controller="PaymentCtrl as vm" ng-init='vm.init(@Html.Json(Model))'>
     <h3>@ClientManagerGlobalResources.Payment</h3>
    
     <div class="spacer">
@@ -14,6 +14,10 @@
     </div>
     <table st-table="vm.displayedPayments" st-safe-src="vm.payments" st-pipe="vm.pipeTable" class="table table-hover table-bordered">
         <thead>
+            <tr>
+                <th colspan=4 ng-cloak> {{ vm.clientRazonSocial }}</th>
+                <th colspan=3 ng-cloak> {{ vm.costoTotal }}</th>
+            </tr>
             <tr>
                 <th class="col-md-1" st-sort="secuencia">Secuencia</th>
                 <th class="col-md-2" st-sort="monto">Monto</th>
@@ -34,7 +38,7 @@
             <tr ng-show="!vm.isLoading" ng-repeat="payment in vm.payments" ng-cloak>
                 <td ng-bind="payment.secuencia"></td>
                 <td>$<span ng-bind="payment.monto"></span></td>
-                <td ng-bind="payment.pagado"></td>
+                <td>{{payment.pagado ? 'Si' : 'No'}}</td>
                 <td ng-bind="payment.fechaPago | date:'dd/MM/yyyy'"></td> 
                 <td ng-bind="payment.fechaVencimiento | date:'dd/MM/yyyy'"></td>
                 <td ng-bind="payment.projectNombre"></td>

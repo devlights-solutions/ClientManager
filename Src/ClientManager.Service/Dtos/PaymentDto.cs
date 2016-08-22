@@ -18,7 +18,9 @@ namespace ClientManager.Service.Dtos
         public DateTime? FechaVencimiento { get; set; }
         public decimal Monto { get; set; } 
         public string ProjectNombre { get; set; }
-       
+        public string ProjectClientRazonSocial { get; set; }
+
+
 
         public Payment ToPayment()
         {

@@ -18,9 +18,10 @@
     <table st-table="vm.displayedProjects" st-safe-src="vm.projects" st-pipe="vm.pipeTable" class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th class="col-md-3"st-sort="Nombre">Nombre</th>
+                <th class="col-md-2" st-sort="nombre">Nombre</th>
                 <th class="col-md-2" st-sort="descripcion">Descripcion</th>
-                <th class="col-md-0" st-sort="fechaInicio">Fecha Inicio</th>
+                <th class="col-md-2" st-sort="costoTotal">Costo Total</th>
+                <th class="col-md-2" st-sort="fechaInicio">Fecha Inicio</th>
                 <th class="col-md-2" st-sort="clientRazonSocial">Cliente</th>
                 <th class="col-md-2"></th>
             </tr>
@@ -35,6 +36,7 @@
             <tr ng-show="!vm.isLoading" ng-repeat="project in vm.projects" ng-cloak>
                 <td ng-bind="project.nombre"></td>
                 <td ng-bind="project.descripcion"></td>
+                <td ng-bind="project.costoTotal"></td>
                 <td ng-bind="project.fechaInicio | date:'dd/MM/yyyy'"></td>
                 <td ng-bind="project.clientRazonSocial"></td>          
                 <td class="text-center">

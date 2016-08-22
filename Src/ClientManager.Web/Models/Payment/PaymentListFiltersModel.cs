@@ -11,7 +11,7 @@ namespace ClientManager.Web.Models
         [Required]
         [UIHint("ProjectId")]
         [Display(Name = "Project", Prompt = "Seleccionar proyecto")]
-        public int ProjectId { get; set; }
+        public int? ProjectId { get; set; }
 
         public override RouteValueDictionary GetRouteValues(int page = 1)
         {

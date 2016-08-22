@@ -24,7 +24,7 @@ namespace ClientManager.Web.Controllers.Api
         {
             int pageTotal;
 
-            var list = _PaymentService.GetAll(filters.ProjectId, filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
+            var list = _PaymentService.GetAll(filters.ProjectId.GetValueOrDefault(), filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
 
             var pagedList = new StaticPagedList<PaymentDto>(list, filters.Page, filters.PageSize, pageTotal);
 
@@ -66,7 +66,7 @@ namespace ClientManager.Web.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var paymentExists = _PaymentService.GetById(paymentForm.Id.GetValueOrDefault());
+            var paymentExists = _PaymentService.GetById(paymentForm.Id);
             if (paymentExists == null)
             {
                 return NotFound();

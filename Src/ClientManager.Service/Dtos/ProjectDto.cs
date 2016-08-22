@@ -15,6 +15,7 @@ namespace ClientManager.Service.Dtos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public DateTime? FechaInicio { get; set; }
+        public decimal? CostoTotal { get; set; }
         public string ClientRazonSocial { get; set; }
         
 

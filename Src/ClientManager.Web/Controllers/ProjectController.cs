@@ -1,4 +1,5 @@
 ﻿using ClientManager.Service.Interfaces;
+using ClientManager.Service.Models;
 using ClientManager.Web.Models;
 using System.Web.Mvc;
 

@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using ClientManager.Entities;
 using ClientManager.Service.Dtos;
 using Framework.Common.Mapping;
+using ClientManager.Service.Models;
 
 namespace ClientManager.Service.Interfaces
 {
     public interface IProjectService : IService
     {
-        Task Create(Project project);
+        Task<Project> Create(ProjectForm projectForm);
         Task Edit(Project project);
         Task Delete(int projectId);
         IList<ProjectDto> GetAll();
