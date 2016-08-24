@@ -10,6 +10,10 @@
         <AssociationConnector Association="ClientManagerModel.FK_Project_Client" />
         <EntityTypeShape EntityType="ClientManagerModel.Payment" Width="1.5" PointX="5.25" PointY="1.25" />
         <AssociationConnector Association="ClientManagerModel.FK_Payment_Project" />
+        <EntityTypeShape EntityType="ClientManagerModel.TimeRecord" Width="1.5" PointX="5.5" PointY="5" />
+        <AssociationConnector Association="ClientManagerModel.FK_TimeRecord_Project" />
+        <EntityTypeShape EntityType="ClientManagerModel.User" Width="1.5" PointX="0.75" PointY="6" />
+        <AssociationConnector Association="ClientManagerModel.FK_TimeRecord_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

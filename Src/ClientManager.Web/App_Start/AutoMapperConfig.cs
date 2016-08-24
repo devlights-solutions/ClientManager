@@ -30,6 +30,7 @@ namespace ClientManager.Web
 
                 LoadProfileMapping(cfg);
 
+                ConfigBuildedInMapping(cfg);
             });
             
         }
@@ -37,6 +38,14 @@ namespace ClientManager.Web
         private static void LoadProfileMapping(IMapperConfigurationExpression cfg)
         {
             //Mapper.AddProfile<CategoryMappingProfile>();
+        }
+
+        private static void ConfigBuildedInMapping(IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<DateTime, TimeSpan>().ConvertUsing(x => x.TimeOfDay);
+            cfg.CreateMap<TimeSpan, DateTime>().ConvertUsing(x => new DateTime(x.Ticks));
+            cfg.CreateMap<DateTime?, TimeSpan?>().ConvertUsing(x => x.HasValue ? x.Value.TimeOfDay : (TimeSpan?)null);
+            cfg.CreateMap<TimeSpan?, DateTime?>().ConvertUsing(x => x.HasValue ?  new DateTime(x.Value.Ticks) : (DateTime?)null);
         }
 
         private static void LoadCustomMappings(IEnumerable<Type> types, IMapperConfigurationExpression cfg)

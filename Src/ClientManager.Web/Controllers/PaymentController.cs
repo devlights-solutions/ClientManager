@@ -36,7 +36,6 @@ namespace ClientManager.Web.Controllers
         {
             var paymentForm = new PaymentForm();
             paymentForm.Secuencia = _paymentService.GetNextSequence(projectId);
-            //tu vieja
             paymentForm.ProjectId = projectId;            
             return PartialView(paymentForm);
         }

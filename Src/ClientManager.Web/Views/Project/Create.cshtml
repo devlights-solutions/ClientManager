@@ -14,8 +14,12 @@
         <div class="col-md-12 form-group">
             @Html.LabelFor(x => x.Nombre)
             @Html.AngularEditorFor(x => x.Nombre, new { Prefix = "vm.project" })
+        </div>
+        <div class="col-md-12 form-group">
             @Html.LabelFor(x => x.Descripcion)
             @Html.AngularEditorFor(x => x.Descripcion, new { Prefix = "vm.project" })
+        </div>
+        <div class="col-md-12 form-group">
             @Html.LabelFor(x => x.CostoTotal)
             @Html.AngularEditorFor(x => x.CostoTotal, new { Prefix = "vm.project" })
         </div>
@@ -26,12 +30,17 @@
         <div ng-show="vm.project.cuotas" class="col-md-12 form-group">
             @Html.LabelFor(x => x.CantidadCuotas)
             @Html.AngularEditorFor(x => x.CantidadCuotas, new { Prefix = "vm.project" })
+        </div>
+        <div ng-show="vm.project.cuotas" class="col-md-12 form-group">
             @Html.LabelFor(x => x.FechaPago)
             @Html.AngularEditorFor(x => x.FechaPago, new { Prefix = "vm.project" })
         </div>
         <div class="col-md-12 form-group">
             @Html.LabelFor(x => x.FechaInicio)
             @Html.AngularEditorFor(x => x.FechaInicio, new { Prefix = "vm.project" })
+        </div>
+        <div class="col-md-12 form-group">
+
             @Html.LabelFor(x => x.ClientId)
             @Html.AngularEditorFor(x => x.ClientId, new { Prefix = "vm.project" })
         </div>

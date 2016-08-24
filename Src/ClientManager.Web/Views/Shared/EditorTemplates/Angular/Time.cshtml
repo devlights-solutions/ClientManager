@@ -1,0 +1,10 @@
+﻿@using System.Threading
+@model DateTime?
+
+<div uib-timepicker
+     ng-model="@Html.AngularBindingForModel()" 
+     ng-change="@ViewBag.NgChange" 
+     hour-step="@(ViewBag.hourStep ?? 1)" 
+     minute-step="@(ViewBag.minuteStep ?? 15)" 
+     show-meridian="@(ViewBag.isMeridian ?? "false")">
+</div>

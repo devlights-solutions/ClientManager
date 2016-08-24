@@ -18,6 +18,7 @@ namespace ClientManager.Entities
         public Project()
         {
             this.Payments = new HashSet<Payment>();
+            this.TimeRecords = new HashSet<TimeRecord>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace ClientManager.Entities
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TimeRecord> TimeRecords { get; set; }
     }
 }

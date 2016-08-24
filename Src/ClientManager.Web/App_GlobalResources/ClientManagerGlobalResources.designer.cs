@@ -104,5 +104,14 @@ namespace Resources {
                 return ResourceManager.GetString("Project", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TimeRecords.
+        /// </summary>
+        internal static string TimeRecord {
+            get {
+                return ResourceManager.GetString("TimeRecord", resourceCulture);
+            }
+        }
     }
 }

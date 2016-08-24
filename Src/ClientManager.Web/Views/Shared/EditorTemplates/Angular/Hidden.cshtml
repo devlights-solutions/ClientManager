@@ -1,0 +1,8 @@
+﻿@model object
+@Html.Hidden("", Model, 
+        new
+        {
+			ng_model = Html.AngularBindingForModel(),
+            hidden_value = "",
+            is_date = ViewBag.IsDate
+        })

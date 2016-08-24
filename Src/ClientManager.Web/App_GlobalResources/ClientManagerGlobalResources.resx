@@ -132,4 +132,7 @@
   <data name="Project" xml:space="preserve">
     <value>Projects</value>
   </data>
+  <data name="TimeRecord" xml:space="preserve">
+    <value>TimeRecords</value>
+  </data>
 </root>

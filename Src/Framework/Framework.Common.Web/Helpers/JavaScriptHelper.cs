@@ -17,10 +17,11 @@ namespace Framework.Common.Web.Helpers
         {
             var settings = new JsonSerializerSettings
             {
+                DateTimeZoneHandling = DateTimeZoneHandling.Local,
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 Converters = new JsonConverter[]
                 {
-                    new StringEnumConverter(),
+                    new StringEnumConverter()
                 },
                 StringEscapeHandling = StringEscapeHandling.EscapeHtml
             };
@@ -171,6 +172,19 @@ namespace Framework.Common.Web.Helpers
             }
 
             return sb.ToString();
+        }
+        public static IHtmlString AngularHiddenFor<TModel, TValue>(this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, TValue>> expression, string prefix)
+        {
+            //helper.ViewData.TemplateInfo.HtmlFieldPrefix = prefix;
+            return helper.EditorFor(expression, "angular/hidden", new { Prefix = prefix });
+        }
+
+        public static IHtmlString AngularHiddenDateFor<TModel, TValue>(this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, TValue>> expression, string prefix)
+        {
+            //helper.ViewData.TemplateInfo.HtmlFieldPrefix = prefix;
+            return helper.EditorFor(expression, "angular/hidden", new { Prefix = prefix, IsDate = true });
         }
     }
 }

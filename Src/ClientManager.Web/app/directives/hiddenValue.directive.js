@@ -23,6 +23,10 @@
                 modelCtrl: modelCtrl
             }
 
+            if (attrs.valDate) {
+                element.removeAttr('data-val-date');
+            }
+
             $timeout(function() {
                 if ($(element).is(':hidden') && attrs.validate) {
                     $(element).change(function() {
@@ -43,9 +47,9 @@
 
         function updateValue(element, newValue, attrs) {
             var value = newValue;
-            //if (attrs.isDate && value) {
-            //    value = moment(newValue).format();
-            //}
+            if (attrs.isDate == "True" && value) {
+                value = moment(newValue).format();
+            }
             if (!value && !((typeof value) == 'boolean')) {
                 value = '';
             }

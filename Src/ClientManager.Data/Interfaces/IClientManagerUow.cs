@@ -13,6 +13,7 @@ namespace ClientManager.Data.Interfaces
         IRepository<Client> Clients { get; }
         IRepository<Project> Projects { get; }
         IRepository<Payment> Payments { get; }
+        IRepository<TimeRecord> TimeRecords { get; }
 
         ClientManagerDbContext DbContext { get; }
     }

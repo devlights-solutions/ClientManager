@@ -1,0 +1,30 @@
+﻿@model TimeRecordForm
+
+<div class="col-md-12 form-group">
+    @Html.LabelFor(x => x.Descripcion)
+    @Html.AngularEditorFor(x => x.Descripcion, new { Prefix = "vm.timeRecord" })
+    @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+</div>
+<div class="col-md-12 form-group">
+    @Html.LabelFor(x => x.Fecha)
+    @Html.AngularEditorFor(x => x.Fecha, new { Prefix = "vm.timeRecord" })
+    @Html.ValidationMessage("Fecha", new { @class = "text-danger" })
+</div>
+<div class="col-md-12 form-group">
+    @Html.LabelFor(x => x.HoraDesde)
+    @Html.AngularEditorFor(x => x.HoraDesde, new { Prefix = "vm.timeRecord" })
+    @Html.AngularHiddenDateFor(x => x.HoraDesde, "vm.timeRecord")
+    @Html.ValidationMessage("HoraDesde", new { @class = "text-danger" })
+</div>
+<div class="col-md-12 form-group">
+    @Html.LabelFor(x => x.HoraHasta)
+    @Html.AngularEditorFor(x => x.HoraHasta, new { Prefix = "vm.timeRecord" })
+    @Html.AngularHiddenDateFor(x => x.HoraHasta, "vm.timeRecord")
+    @Html.ValidationMessage("HoraHasta", new { @class = "text-danger" })
+</div>
+<div class="col-md-12 form-group">
+    @Html.LabelFor(x => x.Pagado)
+    @Html.AngularEditorFor(x => x.Pagado, new { Prefix = "vm.timeRecord" })
+</div>
+
+@*@Html.AngularPreBindJson("vm.timeRecord")*@

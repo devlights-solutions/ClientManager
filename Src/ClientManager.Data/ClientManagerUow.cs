@@ -31,6 +31,11 @@ namespace ClientManager.Data
 
         public IRepository<Payment> Payments { get { return GetStandardRepo<Payment>();  } }
 
+        public IRepository<TimeRecord> TimeRecords { get { return GetStandardRepo<TimeRecord>(); } }
+
+
+
+
         //public IDemoRepository Demos { get { return GetRepo<IDemoRepository>(); } }
 
         public string ConnectionString

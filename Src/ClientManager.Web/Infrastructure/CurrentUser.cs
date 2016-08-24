@@ -20,7 +20,7 @@ namespace ClientManager.Web.Infrastructure
 
         public ApplicationUser User
         {
-            get { return _user ?? (_user = _applicationUserManager.FindById(_identity.GetUserId())); }
+            get { return _user ?? (_user = _applicationUserManager.FindById(_identity.GetUserId<int>())); }
         }
     }
 }

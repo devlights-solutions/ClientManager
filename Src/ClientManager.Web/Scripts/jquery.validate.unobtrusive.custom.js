@@ -72,8 +72,8 @@
 
     // definition for the isdateafter validation rule
     $.validator.addMethod('isdateafter', function (value, element, params) {
-        value = Globalize.parseDate(value);
-        var otherDate = Globalize.parseDate($(params.compareTo).val());
+        value = moment(value).toDate();
+        var otherDate = moment($(params.compareTo).val()).toDate();
         
         if (!value || !otherDate)
             return true;
