@@ -13,9 +13,10 @@ namespace ClientManager.Service.Interfaces
         Task Create(TimeRecord timeRecord);
         Task Edit(TimeRecord timeRecord);
         Task Delete(int timeRecordId);
+        Task PagarTareas(IEnumerable<int> ids);
         IList<TimeRecordDto> GetAll();
         
-        List<TimeRecordDto> GetAll(int projectId, string sortBy, string sortDirection, int pageIndex, int pageSize,
+        List<TimeRecordDto> GetAll(int? projectId, int? userId, string sortBy, string sortDirection, int pageIndex, int pageSize,
             out int pageTotal);
         TimeRecord GetById(int id);
         

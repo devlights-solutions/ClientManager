@@ -19,8 +19,7 @@ namespace ClientManager.Service.Dtos
         public decimal Monto { get; set; } 
         public string ProjectNombre { get; set; }
         public string ProjectClientRazonSocial { get; set; }
-
-
+        public decimal? ProjectCostoTotal { get; set; }
 
         public Payment ToPayment()
         {

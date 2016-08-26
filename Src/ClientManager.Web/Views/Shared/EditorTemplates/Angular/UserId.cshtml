@@ -1,0 +1,19 @@
+﻿@using System.Web
+@using Microsoft.AspNet.Identity.Owin;
+@{
+    ViewData[UiSelectModel.KeyNgSelectPropertyText] = ViewData[UiSelectModel.KeyNgSelectPropertyText] ?? "email";
+    ViewData[UiSelectModel.KeyNgSelectPropertyValue] = ViewData[UiSelectModel.KeyNgSelectPropertyValue] ?? "id";
+    ViewData[UiSelectModel.KeyNgSelectFilter] = ViewData[UiSelectModel.KeyNgSelectFilter] ?? "{ email: $select.search }";
+    ViewData[UiSelectModel.KeyNgSelectOrderBy] = ViewData[UiSelectModel.KeyNgSelectOrderBy] ?? "'email'";
+    ViewData[UiSelectModel.KeyNgSearchEnabled] = ViewData[UiSelectModel.KeyNgSearchEnabled] ?? "false";
+    if (ViewData[UiSelectModel.KeyNgSelectList] == null)
+    {
+        var service = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        var selectList = service.Users.ToList();
+        ViewData[UiSelectModel.KeyFromService] = true;
+        ViewData[UiSelectModel.KeyNgSelectList] = Html.Json(selectList).ToHtmlString();
+    }
+    var model = new UiSelectModel(ViewData);
+}
+
+@Html.Partial("UI/UiSelect", model)

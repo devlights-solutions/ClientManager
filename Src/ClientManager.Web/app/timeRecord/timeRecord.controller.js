@@ -8,6 +8,8 @@
         var vm = this;
         vm.isLoading = true;
         vm.projectOptions = { key: 'projectIdFilter' };
+        vm.userOptions = { key: 'userIdFilter' };
+        vm.areAllSelected = false;
 
         vm.pipeTable = function (tableState) {
             var params = buildFilter(tableState);
@@ -22,19 +24,49 @@
             loadTable(params);
         };
 
-      
+        vm.selectAll = function () {
+            return _.each(vm.timeRecords, function (tr) {
+                 tr.checked=vm.areAllSelected;
+            })
+        }
+
+        vm.mostrarBotonPago = function () {
+            return _.some(vm.timeRecords, function (tr) {
+                return tr.checked;
+            })
+        }
+              
 
         vm.init = function (filters) {
             vm.filter = filters;
 
             $scope.$broadcast('uiSelect.getList.' + vm.projectOptions.key, { callback: function(listProject){
                 console.log(listProject);
-            }});
+            }
+            });
+            $scope.$broadcast('uiSelect.getList.' + vm.userOptions.key, { callback: function (listUser) {
+                    console.log(listUser);
+                }
+            });
             //vm.refresh();
         };
 
+        vm.pagar = function (timeRecord) {
+            timeRecordSvc.open.confirmarPago([timeRecord.id], vm.refresh);
+        }
+
+        vm.pay = function () {
+            var trs = _.filter(vm.timeRecords, function (tr) {
+                return tr.checked;
+            })
+            trs = _.map(trs, function (tr) {
+                return tr.id
+            })
+            timeRecordSvc.open.confirmarPago(trs, vm.refresh);
+        };
+
         vm.create = function () {
-            timeRecordSvc.open.create(vm.refresh, vm.filter.projectId);
+            timeRecordSvc.open.create(vm.refresh, vm.filter.projectId, vm.filter.userId);
         };
 
         vm.edit = function (timeRecord) {
@@ -49,10 +81,17 @@
             timeRecordSvc.open.detail(timeRecord.id);
         };
 
-        
+ 
+
         vm.actualizarCliente = function (project, model) {
-            
-            vm.clientRazonSocial = 'Cliente: ' + project.clientRazonSocial;
+            vm.clientRazonSocial = '';
+            if(project){
+                vm.clientRazonSocial = 'Cliente: ' + project.clientRazonSocial;
+            }
+            vm.refresh();
+        }
+
+        vm.actualizarUsuario = function () {
             vm.refresh();
         }
 

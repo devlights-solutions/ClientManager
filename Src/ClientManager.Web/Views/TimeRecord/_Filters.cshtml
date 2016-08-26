@@ -3,12 +3,20 @@
 <div> 
     <hr />
     <a class="btn btn-primary" ng-disabled="!vm.filter.projectId" data-ng-click="vm.create()">Añadir Tarea</a>
+    <a class="btn btn-primary pull-right" ng-show="vm.mostrarBotonPago()" data-ng-click="vm.pay()">Pagar</a>
     <hr />        
     <form role="form" form-parse ng-submit="vm.refresh()">
         <div class="row">
-            <div class="col-sm-4">
-                @Html.AngularEditorFor(model => model.ProjectId, new { Prefix = "vm.filter", NgSelect="vm.actualizarCliente($item, $model)", NgUiSelectOptions = "vm.projectOptions"} )                
-            </div>            
+            <div class="col-sm-4 form-group">
+                @Html.AngularEditorFor(model => model.ProjectId, new { Prefix = "vm.filter", NgSelect = "vm.actualizarCliente($item, $model)", NgUiSelectOptions = "vm.projectOptions"})
+            </div>      
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-md-4 form-group">
+                    @Html.AngularEditorFor(model => model.UserId, new { Prefix = "vm.filter", NgSelect = "vm.actualizarUsuario()", NgUiSelectOptions = "vm.userOptions" })
+                </div>
+            }
+                  
         </div>
     </form>
 </div>

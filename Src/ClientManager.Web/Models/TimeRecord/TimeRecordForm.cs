@@ -11,7 +11,15 @@ namespace ClientManager.Web.Models
     public class TimeRecordForm : IMapFrom<Entities.TimeRecord>
     {
         [HiddenInput]
-        public int Id { get; set; }  
+        public int Id { get; set; }
+        [Required]
+        [UIHint("ProjectId")]
+        [Display(Name = "Project", Prompt = "Seleccionar proyecto")]
+        public int? ProjectId { get; set; }
+        [Required]
+        [UIHint("UserId")]
+        [Display(Name = "User", Prompt = "Seleccionar usuario")]
+        public int? UserId { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
         public string Descripcion { get; set; }
@@ -27,13 +35,7 @@ namespace ClientManager.Web.Models
         public DateTime? HoraHasta { get; set; }
         [Required]        
         public bool Pagado { get; set; }                
-        [Required]
-        [HiddenInput]
-        public int? ProjectId { get; set; }
-        //[Required]
-        [HiddenInput]
-        public int? UserId { get; set; }
-            
+                    
         public Entities.TimeRecord ToTimeRecord()
         {
             var timeRecord = Mapper.Map<TimeRecordForm, Entities.TimeRecord>(this);

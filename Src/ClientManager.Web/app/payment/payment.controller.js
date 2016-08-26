@@ -67,11 +67,13 @@
 
         
         vm.actualizarCliente = function (project, model) {
-            
-            vm.clientRazonSocial = 'Cliente: ' + project.clientRazonSocial;
-            vm.costoTotal = 'Costo: ' + project.costoTotal;
+            vm.clientRazonSocial = '';
+            if(project){
+                vm.clientRazonSocial = 'Cliente: ' + project.clientRazonSocial;
+                vm.costoTotal = 'Costo Total: $' + project.costoTotal;
+            }
             vm.refresh();
-        }
+        }        
 
 
         function buildFilter(tableState) {

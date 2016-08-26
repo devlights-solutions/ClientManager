@@ -19,12 +19,14 @@
             edit: edit,
             remove: remove,
             getAll: getAll,
+            pagarTareas: pagarTareas,
 
             open: {
                 create: openCreate,
                 edit: openEdit,
                 remove: openRemove,
-                detail: openDetail
+                detail: openDetail,
+                confirmarPago: openConfirmarPago
             }
         };
 
@@ -53,7 +55,7 @@
 
             $http({
                 method: 'PUT',
-                url: urlApiBase,
+                url: urlApiBase + 'edit',
                 data: JSON.stringify(timeRecord),
                 contentType: 'application/json'
             }).success(function (data) {
@@ -101,9 +103,9 @@
         /** 
          * Modals
          */
-        function openCreate(successCallback, projectId) {
+        function openCreate(successCallback, projectId, userId) {
             modalSvc.open({
-                templateUrl: service.urls.create + "?projectId=" + projectId,
+                templateUrl: service.urls.create + "?projectId=" + projectId + "&userId=" + userId,
                 size: 'sm',
                 controller: 'TimeRecordModalCtrl',
                 controllerAs: 'vm'
@@ -141,6 +143,37 @@
                 bodyText: 'Está seguro que desea eliminar el timeRecord?',
                 successCallback: function () {
                     var promise = remove(timeRecordId);
+                    if (successCallback) {
+                        promise.then(successCallback);
+                    }
+                }
+            });
+        }
+        function pagarTareas(timeRecords) {
+            var deferred = $q.defer();
+
+            $http({
+                method: 'PUT',
+                url: urlApiBase + 'pagarTareas',
+                data: JSON.stringify(timeRecords),
+                contentType: 'application/json'
+            }).success(function (data) {
+                deferred.resolve(data);
+            }).error(function (response, statusCode) {
+                deferred.reject(response, statusCode);
+            });
+
+            return deferred.promise;
+        }
+
+        function openConfirmarPago(timeRecords, successCallback) {
+            staticModalSvc.open(null, {
+                closeButtonText: 'Cancelar',
+                actionButtonText: 'Confirmar',
+                headerText: 'Realizar Pago',
+                bodyText: 'Está seguro que desea realizar el pago?',
+                successCallback: function () {
+                    var promise = pagarTareas(timeRecords);
                     if (successCallback) {
                         promise.then(successCallback);
                     }

@@ -5,6 +5,8 @@ using ClientManager.Service.Dtos;
 using ClientManager.Service.Interfaces;
 using ClientManager.Web.Models;
 using PagedList;
+using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace ClientManager.Web.Controllers.Api
 {
@@ -24,7 +26,14 @@ namespace ClientManager.Web.Controllers.Api
         {
             int pageTotal;
 
-            var list = _TimeRecordService.GetAll(filters.ProjectId.GetValueOrDefault(), filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
+            var usuario = filters.UserId.GetValueOrDefault();
+
+            if (User.IsInRole("Developer"))
+            {
+                usuario = User.Identity.GetUserId<int>(); 
+            }
+
+            var list = _TimeRecordService.GetAll(filters.ProjectId.GetValueOrDefault(), usuario, filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
 
             var pagedList = new StaticPagedList<TimeRecordDto>(list, filters.Page, filters.PageSize, pageTotal);
 
@@ -59,7 +68,9 @@ namespace ClientManager.Web.Controllers.Api
         }
 
         // PUT: api/TimeRecord
-        public async Task<IHttpActionResult> Put(TimeRecordForm timeRecordForm)
+        
+        [HttpPut]
+        public async Task<IHttpActionResult> Edit(TimeRecordForm timeRecordForm)
         {
             if (!ModelState.IsValid)
             {
@@ -77,6 +88,26 @@ namespace ClientManager.Web.Controllers.Api
                 var timeRecord = timeRecordForm.ToTimeRecord();
 
                 await _TimeRecordService.Edit(timeRecord);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> PagarTareas(IEnumerable<int> ids)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+        
+            try
+            {
+                await _TimeRecordService.PagarTareas(ids);
 
                 return Ok();
             }

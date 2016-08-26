@@ -8,8 +8,7 @@
     </div>
     <div class="modal-body" ng-init='vm.init(@Html.Json(Model))'>
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-        @*@Html.AngularEditorForModel("vm.timeRecord")*@
+        
         @Html.Partial("_Fields")
     </div>
     

@@ -20,6 +20,7 @@ namespace ClientManager.Service.Dtos
         public int ProjectId { get; set; }
         public int UserId { get; set; } 
         public string UserEmail { get; set; }
+        public string ProjectNombre { get; set; }
 
 
         public TimeRecord ToTimeRecord()

@@ -33,11 +33,17 @@ namespace ClientManager.Web.Controllers
             return PartialView(timeRecordForm);
         }
 
-        public ActionResult Create(int projectId)
+        public ActionResult Create(int projectId, int? userId)
         {
             var timeRecordForm = new TimeRecordForm();
             timeRecordForm.ProjectId = projectId;
-            timeRecordForm.UserId = User.Identity.GetUserId<int>();           
+            var usuario = userId;
+
+            if (User.IsInRole("Developer"))
+            {
+                usuario = User.Identity.GetUserId<int>();
+            }
+            timeRecordForm.UserId = usuario;
             return PartialView(timeRecordForm);
         }
 

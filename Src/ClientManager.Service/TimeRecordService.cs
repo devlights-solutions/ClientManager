@@ -57,6 +57,18 @@ namespace ClientManager.Service
             return Uow.CommitAsync();
         }
 
+        public Task PagarTareas(IEnumerable<int> ids)
+        {
+            foreach (int id in ids)
+            {
+                TimeRecord currentTimeRecord = this.GetById(id);
+                currentTimeRecord.Pagado = true;
+                Uow.TimeRecords.Edit(currentTimeRecord);
+            }
+            return Uow.CommitAsync();
+
+        }
+
         public TimeRecord GetById(int id)
         {
             return Uow.TimeRecords.Get(id);
@@ -67,7 +79,7 @@ namespace ClientManager.Service
             return Uow.TimeRecords.GetAll().ProjectToList<TimeRecordDto>();
         }
 
-        public List<TimeRecordDto> GetAll(int projectId, string sortBy, string sortDirection, int pageIndex, int pageSize, out int pageTotal)
+        public List<TimeRecordDto> GetAll(int? projectId, int? userId, string sortBy, string sortDirection, int pageIndex, int pageSize, out int pageTotal)
         {
             var pagingCriteria = new PagingCriteria();
 
@@ -76,9 +88,9 @@ namespace ClientManager.Service
             pagingCriteria.SortBy = !string.IsNullOrEmpty(sortBy) ? sortBy : DefaultSortBy;
             pagingCriteria.SortDirection = !string.IsNullOrEmpty(sortDirection) ? sortDirection : DefaultSortDirection;
 
-            Expression<Func<TimeRecord, bool>> where = x => (x.ProjectId == projectId);
+            Expression<Func<TimeRecord, bool>> where = x => ((x.ProjectId == projectId || projectId == 0) && (x.UserId == userId || userId == 0));
 
-            var results = Uow.TimeRecords.GetAll(pagingCriteria, where, x => x.User);
+            var results = Uow.TimeRecords.GetAll(pagingCriteria, where, x => x.User, x => x.Project);
 
             pageTotal = results.PagedMetadata.TotalItemCount;
 

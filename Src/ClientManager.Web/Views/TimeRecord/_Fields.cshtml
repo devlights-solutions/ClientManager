@@ -1,5 +1,19 @@
 ﻿@model TimeRecordForm
 
+@if (User.IsInRole("Admin"))
+{
+    <div class="col-md-12 form-group">
+        @Html.LabelFor(x => x.ProjectId)
+        @Html.AngularEditorFor(x => x.ProjectId, new { Prefix = "vm.timeRecord" })
+        @Html.ValidationMessage("ProjectId", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-12 form-group">
+        @Html.LabelFor(x => x.UserId)
+        @Html.AngularEditorFor(x => x.UserId, new { Prefix = "vm.timeRecord" })
+        @Html.ValidationMessage("UserId", new { @class = "text-danger" })
+    </div>
+}
+
 <div class="col-md-12 form-group">
     @Html.LabelFor(x => x.Descripcion)
     @Html.AngularEditorFor(x => x.Descripcion, new { Prefix = "vm.timeRecord" })
