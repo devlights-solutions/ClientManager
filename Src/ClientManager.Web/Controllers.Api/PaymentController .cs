@@ -24,7 +24,7 @@ namespace ClientManager.Web.Controllers.Api
         {
             int pageTotal;
 
-            var list = _PaymentService.GetAll(filters.ProjectId.GetValueOrDefault(), filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
+            var list = _PaymentService.GetAll(filters.ProjectId.GetValueOrDefault(), filters.FechaVencimiento, filters.Pagado, filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
 
             var pagedList = new StaticPagedList<PaymentDto>(list, filters.Page, filters.PageSize, pageTotal);
 

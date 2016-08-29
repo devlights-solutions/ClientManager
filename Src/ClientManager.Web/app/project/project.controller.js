@@ -12,6 +12,7 @@
         //vm.projects = [];
 
         vm.pipeTable = function (tableState) {
+           
             vm.isLoading = true;
 
             vm.getProjects(smartTableSvc.getGridParams(tableState))
@@ -20,6 +21,10 @@
                     tableState.pagination.numberOfPages = result.pageCount;//set the number of pages so the pagination can update
                 });
         };
+
+        vm.init = function (filters) {
+            vm.filter = filters;
+        }
 
         vm.create = function () {
             projectSvc.open.create(vm.refresh);
@@ -41,6 +46,12 @@
             var params = angular.extend({}, smartTableSvc.getGridParams(), vm.filter);
             vm.getProjects(params);
         };
+
+   
+
+        vm.actualizarCliente = function () {
+            vm.refresh();
+        }
 
         vm.groupFilter = function (item) {
             var array = [];

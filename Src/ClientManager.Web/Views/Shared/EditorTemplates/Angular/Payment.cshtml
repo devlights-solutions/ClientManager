@@ -1,0 +1,25 @@
+﻿@using ClientManager.Service.Interfaces
+@*@model bool?*@
+@{
+    ViewData[UiSelectModel.KeyNgSelectPropertyText] = ViewData[UiSelectModel.KeyNgSelectPropertyText] ?? "value";
+    ViewData[UiSelectModel.KeyNgSelectPropertyValue] = ViewData[UiSelectModel.KeyNgSelectPropertyValue] ?? "key";
+    ViewData[UiSelectModel.KeyNgSelectFilter] = ViewData[UiSelectModel.KeyNgSelectFilter] ?? "{ value: $select.search }";
+    ViewData[UiSelectModel.KeyNgSelectOrderBy] = ViewData[UiSelectModel.KeyNgSelectOrderBy] ?? "'value'";
+    ViewData[UiSelectModel.KeyNgSearchEnabled] = ViewData[UiSelectModel.KeyNgSearchEnabled] ?? "false";
+    if (ViewData[UiSelectModel.KeyNgSelectList] == null)
+    {
+
+        var selectList = new List<KeyValuePair<bool?,string>>
+            {
+                new KeyValuePair<bool?,string>(true, "Si"),
+                new KeyValuePair<bool?,string>(false, "No"),
+            };
+
+
+        ViewData[UiSelectModel.KeyFromService] = true;
+        ViewData[UiSelectModel.KeyNgSelectList] = Html.Json(selectList).ToHtmlString();
+    }
+    var model = new UiSelectModel(ViewData);
+}
+
+@Html.Partial("UI/UiSelect", model)

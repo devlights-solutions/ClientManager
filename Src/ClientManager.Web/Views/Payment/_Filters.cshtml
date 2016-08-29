@@ -7,8 +7,14 @@
     <form role="form" form-parse ng-submit="vm.refresh()">
         <div class="row">
             <div class="col-sm-4">
-                @Html.AngularEditorFor(model => model.ProjectId, new { Prefix = "vm.filter", NgSelect="vm.actualizarCliente($item, $model)", NgUiSelectOptions = "vm.projectOptions"} )                
-            </div>            
+                @Html.AngularEditorFor(model => model.ProjectId, new { Prefix = "vm.filter", NgSelect="vm.actualizarCliente($item, $model)", NgUiSelectOptions = "vm.projectOptions", NgChange = "vm.selectChanged()" } )                
+            </div>
+            <div class="col-sm-4">
+                @Html.AngularEditorFor(x => x.FechaVencimiento, new { Prefix = "vm.filter", NgChange = "vm.refresh()" })
+            </div>
+            <div class="col-sm-4">
+                @Html.AngularEditorFor(x => x.Pagado, new { Prefix = "vm.filter", NgChange = "vm.refresh()" })
+            </div>                        
         </div>
     </form>
 </div>

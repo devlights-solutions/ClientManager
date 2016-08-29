@@ -92,7 +92,7 @@ namespace ClientManager.Service
             return Uow.Projects.GetAll().ProjectToList<ProjectDto>();
         }
 
-        public List<ProjectDto> GetAll(string criteria, string sortBy, string sortDirection, int pageIndex, int pageSize, out int pageTotal)
+        public List<ProjectDto> GetAll(string criteria, int? clientId, string sortBy, string sortDirection, int pageIndex, int pageSize, out int pageTotal)
         {
             var pagingCriteria = new PagingCriteria();
 
@@ -101,7 +101,7 @@ namespace ClientManager.Service
             pagingCriteria.SortBy = !string.IsNullOrEmpty(sortBy) ? sortBy : DefaultSortBy;
             pagingCriteria.SortDirection = !string.IsNullOrEmpty(sortDirection) ? sortDirection : DefaultSortDirection;
 
-            Expression<Func<Project, bool>> where = x => ((string.IsNullOrEmpty(criteria) || x.Nombre.Contains(criteria)));
+            Expression<Func<Project, bool>> where = x => ((string.IsNullOrEmpty(criteria) || x.Nombre.Contains(criteria)) && (x.ClientId == clientId || clientId == null));
 
             var results = Uow.Projects.GetAll(pagingCriteria, where);
 

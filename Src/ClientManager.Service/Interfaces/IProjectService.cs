@@ -16,7 +16,7 @@ namespace ClientManager.Service.Interfaces
         Task Delete(int projectId);
         IList<ProjectDto> GetAll();
 
-        List<ProjectDto> GetAll(string criteria, string sortBy, string sortDirection, int pageIndex, int pageSize,
+        List<ProjectDto> GetAll(string criteria, int? clientId, string sortBy, string sortDirection, int pageIndex, int pageSize,
             out int pageTotal);
         Project GetById(int id);
     }

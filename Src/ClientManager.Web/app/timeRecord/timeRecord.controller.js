@@ -40,15 +40,15 @@
         vm.init = function (filters) {
             vm.filter = filters;
 
-            $scope.$broadcast('uiSelect.getList.' + vm.projectOptions.key, { callback: function(listProject){
-                console.log(listProject);
-            }
-            });
-            $scope.$broadcast('uiSelect.getList.' + vm.userOptions.key, { callback: function (listUser) {
-                    console.log(listUser);
-                }
-            });
-            //vm.refresh();
+            $scope.$on('uiSelect.init.' + vm.projectOptions.key, function (e, args) {
+                console.log(args);
+
+                if (args) vm.listProject = args;
+                var project = _.find(vm.listProject, function (p) {
+                    return p.id == vm.filter.projectId;
+                })
+                vm.actualizarCliente(project)
+            })
         };
 
         vm.pagar = function (timeRecord) {

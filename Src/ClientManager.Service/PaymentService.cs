@@ -73,7 +73,7 @@ namespace ClientManager.Service
             return Uow.Payments.GetAll().ProjectToList<PaymentDto>();
         }
 
-        public List<PaymentDto> GetAll(int projectId, string sortBy, string sortDirection, int pageIndex, int pageSize, out int pageTotal)
+        public List<PaymentDto> GetAll(int projectId, DateTime? fechaVencimiento, bool? pagado, string sortBy, string sortDirection, int pageIndex, int pageSize, out int pageTotal)
         {
             var pagingCriteria = new PagingCriteria();
 
@@ -82,7 +82,7 @@ namespace ClientManager.Service
             pagingCriteria.SortBy = !string.IsNullOrEmpty(sortBy) ? sortBy : DefaultSortBy;
             pagingCriteria.SortDirection = !string.IsNullOrEmpty(sortDirection) ? sortDirection : DefaultSortDirection;
 
-            Expression<Func<Payment, bool>> where = x => (x.ProjectId == projectId);
+            Expression<Func<Payment, bool>> where = x => (x.ProjectId == projectId && (x.FechaVencimiento <= fechaVencimiento || fechaVencimiento == null) && (x.Pagado == pagado || pagado == null));
 
             var results = Uow.Payments.GetAll(pagingCriteria, where);//, where;
 

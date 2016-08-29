@@ -11,19 +11,25 @@ namespace ClientManager.Web.Models
     {
         [HiddenInput]
         public int Id { get; set; }
+
         [ReadOnly(true)]
         [Required]
         public int Secuencia { get; set; }
+
         [Required]
         public decimal Monto { get; set; }
+
         [Required]        
-        public bool Pagado { get; set; }  
+        public bool Pagado { get; set; }
+
         [DataType(DataType.Date)]
         [Display(Name = "Fecha Pago")]      
         public DateTime? FechaPago { get; set; }
+
         [DataType(DataType.Date)]
         [Display(Name = "Fecha Vencimiento")]
-        public DateTime? FechaVencimiento { get; set; }        
+        public DateTime? FechaVencimiento { get; set; }
+
         [Required]
         [HiddenInput]
         public int? ProjectId { get; set; }

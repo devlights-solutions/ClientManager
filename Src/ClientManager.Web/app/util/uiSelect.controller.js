@@ -3,10 +3,11 @@
     var app = angular.module('app.util');
     app.controller('UiSelectCtrl', [
         '$scope',
+        '$timeout',
         UiSelectCtrl
     ]);
 
-    function UiSelectCtrl($scope) {
+    function UiSelectCtrl($scope, $timeout) {
         var vm = this;
         var config = {
             createModalPromise: null,
@@ -23,11 +24,14 @@
 
         function init(model) {
             vm.list = model.list || [];
+
+            $timeout(function () { $scope.$emit('uiSelect.init.' + config.key, angular.copy(vm.list)) });
+
             config = model.options || {};
             vm.hasButton = config.createModalPromise ? true : false;
 
-            $scope.$on('uiSelect.getList.' + config.key, function (e, callback) {
-                if(callback) callback(list);
+            $scope.$on('uiSelect.getList.' + config.key, function (e, args) {
+                if (args.callback) args.callback(vm.list);
             })
         }
 

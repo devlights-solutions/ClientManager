@@ -28,7 +28,7 @@ namespace ClientManager.Web.Controllers.Api
         {
             int pageTotal;
 
-            var list = _ProjectService.GetAll(filters.Criteria, filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
+            var list = _ProjectService.GetAll(filters.Criteria, filters.ClientId, filters.SortBy, filters.SortDirection, filters.Page, filters.PageSize, out pageTotal);
 
             var pagedList = new StaticPagedList<ProjectDto>(list, filters.Page, filters.PageSize, pageTotal);
 

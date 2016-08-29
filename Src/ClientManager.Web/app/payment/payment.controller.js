@@ -8,6 +8,7 @@
         var vm = this;
         vm.isLoading = true;
         vm.projectOptions = { key: 'projectIdFilter' };
+        vm.listProject = [];
 
         vm.pipeTable = function (tableState) {
             var params = buildFilter(tableState);
@@ -22,31 +23,18 @@
             loadTable(params);
         };
 
-        
-
-        
-
-        //vm.isLoading = true;
-        //vm.filter = {};
-        ////vm.payments = [];
-
-        //vm.pipeTable = function (tableState) {
-        //    vm.isLoading = true;
-
-        //    vm.getPayments(smartTableSvc.getGridParams(tableState))
-        //        .then(function (result) {
-        //            vm.isLoading = false;
-        //            tableState.pagination.numberOfPages = result.pageCount;//set the number of pages so the pagination can update
-        //        });
-        //};
-
         vm.init = function (filters) {
             vm.filter = filters;
 
-            $scope.$broadcast('uiSelect.getList.' + vm.projectOptions.key, { callback: function(listProject){
-                console.log(listProject);
-            }});
-            //vm.refresh();
+            $scope.$on('uiSelect.init.' + vm.projectOptions.key, function (e, args) {
+                console.log(args);
+
+                if (args) vm.listProject = args;
+                var project = _.find(vm.listProject, function (p) {
+                    return p.id == vm.filter.projectId;
+                })
+                vm.actualizarCliente(project)
+            })
         };
 
         vm.create = function () {
@@ -65,13 +53,20 @@
             paymentSvc.open.detail(payment.id);
         };
 
-        
+ 
         vm.actualizarCliente = function (project, model) {
             vm.clientRazonSocial = '';
             if(project){
                 vm.clientRazonSocial = 'Cliente: ' + project.clientRazonSocial;
                 vm.costoTotal = 'Costo Total: $' + project.costoTotal;
             }
+
+            $scope.$broadcast('uiSelect.getList.' + vm.projectOptions.key, {
+                callback: function (listProject) {
+                    console.log(listProject);
+                }
+            });
+
             vm.refresh();
         }        
 

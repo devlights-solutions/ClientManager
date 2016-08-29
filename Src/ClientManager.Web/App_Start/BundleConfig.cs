@@ -20,7 +20,9 @@ namespace ClientManager.Web
                 "~/Scripts/select.js",
                 "~/Scripts/spin.js",
                 "~/Scripts/angular-spinner.js",
-                "~/Scripts/json-format-date-fix.js"
+                "~/Scripts/json-format-date-fix.js",
+                "~/Scripts/angular-ui/fullcalendar.js",
+                "~/Scripts/angular-ui/calendar.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/globalize")

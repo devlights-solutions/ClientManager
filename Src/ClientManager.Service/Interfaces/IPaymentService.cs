@@ -15,7 +15,7 @@ namespace ClientManager.Service.Interfaces
         Task Delete(int paymentId);
         IList<PaymentDto> GetAll();
         
-        List<PaymentDto> GetAll(int projectId, string sortBy, string sortDirection, int pageIndex, int pageSize,
+        List<PaymentDto> GetAll(int projectId, DateTime? fechaVencimiento, bool? pagado, string sortBy, string sortDirection, int pageIndex, int pageSize,
             out int pageTotal);
         Payment GetById(int id);
         int GetNextSequence(int projectId);
