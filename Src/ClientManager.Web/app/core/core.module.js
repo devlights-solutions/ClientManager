@@ -6,6 +6,7 @@
         'ngSanitize', 
         'ui.bootstrap',
         'smart-table',
+        'mwl.calendar',
         'angularSpinner',
 
         'app.services',

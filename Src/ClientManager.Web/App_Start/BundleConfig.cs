@@ -21,8 +21,7 @@ namespace ClientManager.Web
                 "~/Scripts/spin.js",
                 "~/Scripts/angular-spinner.js",
                 "~/Scripts/json-format-date-fix.js",
-                "~/Scripts/angular-ui/fullcalendar.js",
-                "~/Scripts/angular-ui/calendar.js"
+                "~/Scripts/angular-ui/angular-bootstrap-calendar-tpls.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/globalize")
@@ -74,7 +73,9 @@ namespace ClientManager.Web
                 "~/Content/bootstrap-datepicker.css",
                 "~/Content/ui-grid.min.css",
                 "~/Content/select.min.css",
-                "~/Content/site.css"));
+                "~/Content/site.css",
+                "~/Content/angular-bootstrap-calendar.min.css"
+                ));
         }
     }
 }

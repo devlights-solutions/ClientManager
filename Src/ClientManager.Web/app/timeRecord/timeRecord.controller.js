@@ -10,6 +10,8 @@
         vm.projectOptions = { key: 'projectIdFilter' };
         vm.userOptions = { key: 'userIdFilter' };
         vm.areAllSelected = false;
+        vm.calendarView = 'month';
+        vm.calendarDate = new Date();
 
         vm.pipeTable = function (tableState) {
             var params = buildFilter(tableState);
@@ -20,13 +22,13 @@
 
         vm.refresh = function () {
             var params = buildFilter();
-    
+
             loadTable(params);
         };
 
         vm.selectAll = function () {
             return _.each(vm.timeRecords, function (tr) {
-                 tr.checked=vm.areAllSelected;
+                tr.checked = vm.areAllSelected;
             })
         }
 
@@ -35,7 +37,6 @@
                 return tr.checked;
             })
         }
-              
 
         vm.init = function (filters) {
             vm.filter = filters;
@@ -81,11 +82,9 @@
             timeRecordSvc.open.detail(timeRecord.id);
         };
 
- 
-
         vm.actualizarCliente = function (project, model) {
             vm.clientRazonSocial = '';
-            if(project){
+            if (project) {
                 vm.clientRazonSocial = 'Cliente: ' + project.clientRazonSocial;
             }
             vm.refresh();
@@ -95,6 +94,9 @@
             vm.refresh();
         }
 
+        vm.eventClicked = function (event) {
+            timeRecordSvc.open.detail(event.$id);
+        };
 
         function buildFilter(tableState) {
             return angular.extend({}, smartTableSvc.getGridParams(tableState), vm.filter);
@@ -108,6 +110,29 @@
                 .then(function (result) {
                     vm.isLoading = false;
                     vm.timeRecords = result.list;
+                    vm.events = _.map(vm.timeRecords, function (tr) {
+
+                        var fecha = moment(tr.fecha);
+                        var startsAtTime = moment(tr.horaDesde);
+                        var endsAtTime = moment(tr.horaHasta);
+                        var startsAt = moment(fecha.set({
+                            'hour': startsAtTime.get('hour'),
+                            'minute': startsAtTime.get('minute'),
+                            'second': startsAtTime.get('second')
+                        }));
+                        var endsAt = moment(fecha.set({
+                            'hour': endsAtTime.get('hour'),
+                            'minute': endsAtTime.get('minute'),
+                            'second': endsAtTime.get('second')
+                        }));
+
+                        return {
+                            $id: tr.id,
+                            title: tr.descripcion,
+                            startsAt: startsAt.toDate(),
+                            endsAt: endsAt.toDate(),
+                        }
+                    });
                     return result;
                 });
         }
