@@ -30,7 +30,7 @@
         </thead>
         <tbody>
             <tr ng-show="vm.isLoading">
-                <td colspan="8" class="text-center">Buscando pagos ... </td>
+                <td colspan="8" class="text-center spinner-table" loading size="fa-5x">Buscando pagos ... </td>
             </tr>
             <tr ng-show="vm.payments && vm.payments.length == 0" ng-cloak>
                 <td colspan="8" class="text-center">No se encontraron pagos </td>

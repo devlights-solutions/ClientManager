@@ -95,7 +95,7 @@
         }
 
         vm.eventClicked = function (event) {
-            timeRecordSvc.open.detail(event.$id);
+            timeRecordSvc.open.detail(event.timeRecordId);
         };
 
         function buildFilter(tableState) {
@@ -128,6 +128,7 @@
 
                         return {
                             $id: tr.id,
+                            timeRecordId: tr.id,
                             title: tr.descripcion,
                             startsAt: startsAt.toDate(),
                             endsAt: endsAt.toDate(),

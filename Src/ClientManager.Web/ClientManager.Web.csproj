@@ -278,8 +278,12 @@
     <Content Include="app\directives\fileRead.html" />
     <Content Include="app\directives\formParse.directive.js" />
     <Content Include="app\directives\hiddenValue.directive.js" />
+    <Content Include="app\directives\loading.directive.js" />
+    <Content Include="app\directives\loading.html" />
     <Content Include="app\directives\numbers.directive.js" />
     <Content Include="app\directives\tableNavigation.directive.js" />
+    <Content Include="app\interceptors\interceptors.module.js" />
+    <Content Include="app\interceptors\loading.interceptor.js" />
     <Content Include="app\payment\payment.controller.js" />
     <Content Include="app\payment\payment.module.js" />
     <Content Include="app\payment\paymentModal.controller.js" />
@@ -296,6 +300,7 @@
     <Content Include="app\timeRecord\timeRecord.module.js" />
     <Content Include="app\timeRecord\timeRecordModal.controller.js" />
     <Content Include="app\util\datepicker.controller.js" />
+    <Content Include="app\util\spinner.service.js" />
     <Content Include="app\util\staticModal.html" />
     <Content Include="app\util\modal.service.js" />
     <Content Include="app\util\smartTable.service.js" />
@@ -320,6 +325,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-locale_es-ar.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
@@ -504,7 +510,6 @@
     <Content Include="Views\TimeRecord\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\calendar\" />
     <Folder Include="app\filters\" />
     <Folder Include="App_Data\" />
   </ItemGroup>

@@ -9,6 +9,7 @@
         'mwl.calendar',
         'angularSpinner',
 
+        'app.interceptors',
         'app.services',
         'app.util',
         'app.directives'

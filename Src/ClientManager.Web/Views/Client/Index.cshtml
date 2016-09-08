@@ -30,7 +30,7 @@
         </thead>
         <tbody>
             <tr ng-show="vm.isLoading">
-                <td colspan="8" class="text-center">Buscando clientes ... </td>
+                <td colspan="8" class="text-center spinner-table" loading size="fa-5x">Buscando clientes... </td>
             </tr>
             <tr ng-show="vm.clients && vm.clients.length == 0" ng-cloak>
                 <td colspan="8" class="text-center">No se encontraron clientes </td>
@@ -68,4 +68,4 @@
         </tfoot>
     </table>
 </div>
-@Html.AngularPreBindJson("vm")
+@*@Html.AngularPreBindJson("vm")*@

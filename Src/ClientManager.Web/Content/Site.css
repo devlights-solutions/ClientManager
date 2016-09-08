@@ -255,3 +255,23 @@ textarea { max-width: 280px; }*/
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+.spinner-with-overlay {
+    background: #000000;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+}
+
+.table-hover .spinner-table-row:hover {
+    background-color: transparent;
+}
+
+.spinner-table {
+    padding-top: 50px!important;
+    padding-bottom: 50px!important;
+}

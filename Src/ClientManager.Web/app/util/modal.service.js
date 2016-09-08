@@ -5,11 +5,12 @@
     app.factory('ModalSvc', [
         '$uibModal',
         '$templateCache',
+        'SpinnerSvc',
         '$timeout',
         ModalSvc
     ]);
 
-    function ModalSvc($modal, $templateCache, $timeout) {
+    function ModalSvc($modal, $templateCache, spinnerSvc, $timeout) {
         var plugDefaults = {
             animation: true,
             backdrop: 'static',
@@ -51,7 +52,7 @@
             setOpened(instance, tempOptions);
             setRendered(instance, tempOptions);
             setResult(instance, tempOptions);
-
+            spinnerSvc.showFullpage();
             return instance;
         }
 
@@ -66,6 +67,7 @@
 
         function setRendered(instance, tempOptions) {
             instance.rendered.then(function () {
+                spinnerSvc.hideFullpage();
                 if (tempOptions.renderCallback) {
                     tempOptions.renderCallback();
                 }

@@ -22,6 +22,7 @@ namespace ClientManager.Web
                 "~/Scripts/angular-spinner.js",
                 "~/Scripts/json-format-date-fix.js",
                 "~/Scripts/angular-ui/angular-bootstrap-calendar-tpls.min.js"
+
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/globalize")
@@ -62,6 +63,7 @@ namespace ClientManager.Web
                 .IncludeDirectory("~/app/", "*.module.js", true)
                 .IncludeDirectory("~/app/", "*.filter.js", true)
                 .IncludeDirectory("~/app/", "*.directive.js", true)
+                .IncludeDirectory("~/app/", "*.interceptor.js", true)
                 .IncludeDirectory("~/app/", "*.service.js", true)
                 .IncludeDirectory("~/app/", "*.controller.js", true)
                 .Include("~/app/app.js")

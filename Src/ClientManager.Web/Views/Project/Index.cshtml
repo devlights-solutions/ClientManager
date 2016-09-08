@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr ng-show="vm.isLoading">
-                <td colspan="8" class="text-center">Buscando proyectos ... </td>
+                <td colspan="8" class="text-center spinner-table" loading size="fa-5x">Buscando proyectos ... </td>
             </tr>
             <tr ng-show="vm.projects && vm.projects.length == 0" ng-cloak>
                 <td colspan="8" class="text-center">No se encontraron proyectos </td>
